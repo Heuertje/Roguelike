@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-
+#include "Level.h"
 
 int main()
 {
@@ -11,8 +11,13 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 
-	cout << "Hello world" << endl;
-	cout << "Hello world!" << endl;
+	//Andrew Level test code
+	Level l = Level();
+	l.GenerateRandomStartLocation();
+	l.PrintLevel();
+	l.PrintLegend();
+
+
 	int x;
 	cin >> x;
 	cout << "you entered" << x << endl;
