@@ -67,4 +67,28 @@ void Level::GenerateRandomStartLocation()
 	startRuimte = Positie(a, b);
 }
 
+void Level::FillAFullRow(int rowToFill)
+{
+	for (int i = 0; i < row; i++)
+	{
+		world[rowToFill][i] = 'x';
+	}
+}
+void Level::FillAFullCollumn(int collumnToFill)
+{
+	for (int i = 0; i < row; i++)
+	{
+		world[i][collumnToFill] = 'y';
+	}
+}
+
+void Level::FillSpecificPositionInDungeon(Positie positie)
+{
+	world[positie.x][positie.y];
+}
+
+void Level::FillSpecificPositionInDungeon(int x, int y)
+{
+	world[x][y];
+}
 

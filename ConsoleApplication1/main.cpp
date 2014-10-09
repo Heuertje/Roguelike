@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "Level.h"
+#include "CheckInput.h"
 
 int main()
 {
@@ -14,9 +15,12 @@ int main()
 	//Andrew Level test code
 	Level l = Level();
 	l.GenerateRandomStartLocation();
+	l.FillAFullRow(6);
 	l.PrintLevel();
 	l.PrintLegend();
 
+
+	CheckInput keyboard;
 
 	int x;
 	cin >> x;

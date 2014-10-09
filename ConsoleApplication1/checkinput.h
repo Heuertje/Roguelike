@@ -1,8 +1,18 @@
 #pragma once
-class checkinput
+#include <windows.h>
+#include <iostream>
+
+
+using namespace std;
+
+
+class CheckInput
 {
-public:
-	checkinput();
-	~checkinput();
+
+	public:
+		int key_code;
+
+		CheckInput();
+		~CheckInput();
 };
 
