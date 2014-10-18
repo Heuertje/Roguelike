@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "character.h"
-#include <cstdlib>
 
 
 
-	int character::checkxp(){
+
+	int Character::checkxp(){
 		if (level == 1 && xp > 100){
 			increaselevel();
 		}
@@ -22,8 +22,10 @@
 		}
 		return xp;
 	}
-
-	int character::increaselevel(){
+	int Character::checkHP(){
+		return health;
+	}
+	int Character::increaselevel(){
 		if (level < 10){
 			level += 1;
 			int attstr = 2;
@@ -32,23 +34,29 @@
 			int randys = rand() % attstr +1;
 			increasestrength(randys);
 			int health = rand() % 7 +1;
-			increasehealth(health);
+			increasemaxhealth(health);
 
 		}
-		return NULL;
+		return level;
 	};
-	int character::increaseattack(int x){
+	int Character::increaseattack(int x){
 		attack += x;
-		return NULL;
+		return attack;
 	};
-	int character::increasestrength(int x){
+	int Character::increasestrength(int x){
 		strength += x;
-		return NULL;
+		return strength;
 	};
-	int increasehealth();
-	int character::increasehealth(int x){
+	int Character::increasemaxhealth(int x){
 		health += x;
-		return NULL;
+		return health;
 	};
-
-
+	int Character::increaseawareness(int x)
+	{
+		 awareness += x;
+		 return awareness;
+	}
+	Item Character::getItemFromInventory(int itemLocation)
+	{
+		return inventory.getItem(itemLocation);
+	}

@@ -1,34 +1,48 @@
 #pragma once
 
-#include "Positie.h"
-
+#include "Position.h"
+#include "Chamber.h"
 class Level
 {
 
 public:
 
-	static const int x = 10;
-	static const int y = 10;
+	//  int x = 10;
+	//  int y = 10;
 
-	static const int row = 10;
-	static const int collumn = 10;
+	 static const int row = 20;
+	 static const int collumn = 20;
+	
+	 Position startPosition;
+	 Position currentPosition;
+	// static const int dungeonRowSize = 20;
+	// static const int dungeonCollumnSize = 20;
 
-	Positie startRuimte;
+	// char dungeon[dungeonRowSize][dungeonCollumnSize];
+	 //char rooms[row][collumn];
+	   Chamber levelMap[20][20];
+	// char rooms[10][10];
+	// char dungeonHallways[row][collumn];
+	   int levelNumber = 0;
 
-	static char world[row][collumn];
-
-
-
-
-	Level();
+	 Level();
 	~Level();
-	void Level::PrintLevel();
-	void Level::PrintLegend();
-	void Level::GenerateRandomStartLocation();
-	void Level::FillAFullRow(int rowToFill);
-	void Level::FillAFullCollumn(int collumnToFill);
-	static void Level::FillSpecificPositionInDungeon(Positie Positie);
-	static void Level::FillSpecificPositionInDungeon(int x, int y);
-
+	 void FillLevel();
+	 void PrintLevel();
+	 void  PrintLegend();
+	 Position  GenerateRandomStartLocation();
+	 void GenerateRandomPitFall();
+	 void GenerateRandomRandomStairs();
+	 void  FillAFullRow(int rowToFill);
+	 void  FillAFullCollumn(int collumnToFill);
+	 void  FillSpecificPositionInDungeon(Position Positie);
+	 void  FillSpecificPositionInDungeon(int x, int y);
+	 int  GetStartRuimteXPositie();
+	 int  GetStartRuimteYPositie();
+	 void PrintStartPosition();
+	 void SetLevelNumber(int lvl);
+	 void PrintLevelNumber();
+	 void CheckWhetherHeroReachedStairs();
+	
 };
 
