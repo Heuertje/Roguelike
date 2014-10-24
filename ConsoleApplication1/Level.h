@@ -17,6 +17,7 @@ public:
 	 static const int row = 20;
 	 static const int collumn = 20;
 
+
 	 Position startPosition;
 	 Position currentPosition;
 	// static const int dungeonRowSize = 20;
@@ -28,6 +29,7 @@ public:
 	// char rooms[10][10];
 	// char dungeonHallways[row][collumn];
 	 int levelNumber;
+
 
 	 Level();
 	~Level();
@@ -47,6 +49,9 @@ public:
 	 void SetLevelNumber(int lvl);
 	 void PrintLevelNumber();
 	 void CheckWhetherHeroReachedStairs();
+
+	 void PrintLevelDescription();
+
 	
 };
 

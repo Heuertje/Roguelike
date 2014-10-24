@@ -2,14 +2,16 @@
 #include "checkinput.h"
 #include <conio.h>
 #include <stdlib.h>
+
 #include <iostream>
 #include <string>
 #include <sstream>
 
-
 CheckInput::CheckInput()
 {
+
 }
+
 CheckInput::CheckInput(Level lvl)
 {
 	level = lvl;
@@ -88,21 +90,9 @@ CheckInput::CheckInput(Level lvl)
 		
 	}
 
+
 }
-
-
-//void CheckInput::nextaction(){}
-
-
-
-
-
-CheckInput::~CheckInput()
-{
-}
-
-
-// Left = 1, Right = 0, Down = 2, Up = 3
+// Left = 0, Right = 1, Down = 2, Up = 3
 void CheckInput::Walk(int direction)
 {
 	switch (direction)
@@ -141,6 +131,8 @@ void CheckInput::Walk(int direction)
 			cout << "CASE 0: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 			level.PrintLevel();
 			level.PrintLegend();
+			level.PrintStartPosition();
+			level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
 		case 1:  //RIGHT
@@ -171,7 +163,8 @@ void CheckInput::Walk(int direction)
 				level.PrintLevel();
 				level.PrintLegend();
 		//	}
-
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 
 			break;
 
@@ -200,6 +193,8 @@ void CheckInput::Walk(int direction)
 				cout << "CASE 2: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
 		case 3: //UP
@@ -228,6 +223,8 @@ void CheckInput::Walk(int direction)
 				cout << " CASE 3: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		//	}
 
 			break;
@@ -237,6 +234,8 @@ void CheckInput::Walk(int direction)
 			break;
 	}
 }
+
+//void CheckInput::nextaction(){}
 
 void CheckInput::SetStartPosition(Position value)
 {

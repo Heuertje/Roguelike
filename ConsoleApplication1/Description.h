@@ -14,6 +14,7 @@ public:
 	string status;
 	bool chair;
 
+	int randomDescriptionSelector;
 	Description();
 	~Description();
 	void SetStatusRandomly();

@@ -5,6 +5,7 @@
 Character::Character(){}
 Character::~Character(){}
 
+
 	int Character::checkxp(){
 		if (level == 1 && xp > 100){
 			increaselevel();

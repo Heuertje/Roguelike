@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Item.h"
 
-
 Item::Item()
 {
+	itemtype = " ";
 }
 
 
@@ -18,6 +18,7 @@ void Item::setItemType(int type)
 		case 0: itemtype = "sword"; break;
 		case 1: itemtype = "magic potion"; break;
 		case 2: itemtype = "holy grenade"; break;
+
 		case 3: itemtype = "item3"; break;
 		case 4: itemtype = "item4"; break;
 		case 5: itemtype = "item5"; break;
@@ -74,4 +75,10 @@ void Item::setItemType(int type)
 		//nothing at the moment
 		break;
 	}
+}
+
+
+std::string Item::getItemType()
+{
+	return itemtype;
 }

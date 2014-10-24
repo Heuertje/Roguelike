@@ -1,4 +1,7 @@
 #pragma once
+
+#include <string>
+
 using namespace std;
 
 
@@ -13,5 +16,7 @@ public:
 	Item();
 	~Item();
 	void setItemType(int type);
+
+	string getItemType();
 };
 

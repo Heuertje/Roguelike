@@ -11,8 +11,10 @@ class CheckInput
 {
 
 	public:
+
 		string input;
 		bool arrowcontrols;
+
 		int key_code;
 		Position startPosition;
 		Level level;
@@ -21,6 +23,6 @@ class CheckInput
 		~CheckInput();
 		void CheckInput::Walk(int direction);
 		void SetStartPosition(Position value);
-//		void nextaction();
+
 };
 

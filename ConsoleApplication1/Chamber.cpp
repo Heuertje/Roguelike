@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Chamber.h"
 
+#include "Randomizer.h"
+
 //TODO: Requirement: 2000 Random chambers
 Chamber::Chamber()
 {
@@ -8,15 +10,19 @@ Chamber::Chamber()
 }
 
 
+
 Chamber::~Chamber()
 {
-	DisposeObject();
+	// DisposeObject();
+	delete item;
+	delete enemy;
 }
 
 void Chamber::DisposeObject()
 {
 	delete this;
 }
+
 void Chamber::SetChamberType(int type)
 {
 	switch (type)
@@ -49,19 +55,55 @@ string Chamber::GetChamberType()
 	return chamberType;
 }
 
+bool Chamber::GetHeroStartPositionState()
+{
+	return dungeonHeroStartState;
+}
+
 void Chamber::PutStuffRandomlyInChamber()
 {
 	//TODO: Implement random chairs, tables, candles, in a chamber
+	GenerateRandomPickUp();
+	GenerateRandomEnemyInChamber();
+	GenerateRandomChamberDecorativeItems();
+	GenerateRandomDescription();
 }
 
 void Chamber::GenerateRandomPickUp()
 {
 	//TODO: Generate random pick-up items for Hero
+
+	item = new Item();
+	//TODO: Generate random pick-up items for Hero
+	item->setItemType(Randomizer::mInstance->generateRandomNumber(3));
 }
 
-void Chamber::GenerateRandomEnemiesInChamber()
+void Chamber::GenerateRandomEnemyInChamber()
 {
-	//TODO:Generate random enemies in a chamber
+	enemy = new Enemy();
+	//TODO: Do I have to make a new object of a enemy?? IMPORTANT!
+	enemy->setEnemyType(Randomizer::mInstance->generateRandomNumber(7));
+}
+
+void Chamber::GenerateRandomChamberDecorativeItems()
+{
+	//TODO: Implement random chairs and tables
+	int a = Randomizer::mInstance->generateRandomNumber(3);
+	switch (a)
+	{
+	case 0: fourChairsExists = true; break;
+	case 1: tableExists = true;
+	case 2: fourChairsExists = true; tableExists = true;
+	default:
+		//nothing as default at the moment
+		break;
+	}
+}
+
+void Chamber::GenerateRandomDescription()
+{
+	description = new Description();
+
 }
 
 void Chamber::AssignDungeonAsHeroStartPosition()
@@ -72,7 +114,7 @@ void Chamber::AssignDungeonAsHeroStartPosition()
 	
 }
 
-bool Chamber::GetHeroStartPositionState()
+void Chamber::PrintChamberDescription()
 {
-	return dungeonHeroStartState;
+	cout << description->descriptioninfo << endl;
 }

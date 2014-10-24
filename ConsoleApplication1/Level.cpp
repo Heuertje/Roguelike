@@ -2,16 +2,16 @@
 #include "Level.h"
 #include <ctime>
 #include "Chamber.h"
+
 #include <iostream>
 #include <string>
 #include <sstream>
 
+#include "Randomizer.h"
 using namespace std;
 
 Level::Level()
 {
-	levelNumber = 0;
-
 }
 
 Level::~Level()
@@ -31,17 +31,17 @@ void Level::FillLevel()
 
 		for (int m = 0; m < collumn; m++)
 		{
-			//	 world[n][m] = (n + 1)*(m + 1);
-			// save hallways of dungeons in a array as well
-			newChamber = new Chamber();
+			
+
+			Chamber* newChamber = new Chamber();
 			newChamber->SetChamberType(0);
+			newChamber->PutStuffRandomlyInChamber();
 			levelMap[n][m] = *newChamber;
-
+			
 			//levelMap[n][m] = '.';
-
+			delete newChamber;
 
 			//dungeonHallways[n][m] = ' ';
-			free(newChamber);
 		}
 	}
 }
@@ -78,45 +78,49 @@ void Level::PrintLegend()
 }
 
 Position Level::GenerateRandomStartLocation()
-{
-	int a = std::rand() % row;
-	int b = std::rand() % collumn;	
-	newStartChamber = new Chamber();
-	newStartChamber->AssignDungeonAsHeroStartPosition();
-	levelMap[a][b] = *newStartChamber;
-	//levelMap[a][b] = '.';
-	//delete newStartChamber;
-	startPosition = Position(a, b);
-	free(newStartChamber);
 
+{
+	
+	int x = Randomizer::mInstance->generateRandomRow(row);
+	int y = Randomizer::mInstance->generateRandomRow(collumn);
+
+	Chamber* newStartChamber = new Chamber();
+
+	newStartChamber->AssignDungeonAsHeroStartPosition();
+	newStartChamber->PutStuffRandomlyInChamber();
+
+	levelMap[x][y] = *newStartChamber;
+	free(newStartChamber);
+	
+	startPosition = Position(x, y);
 	return startPosition;
 }
 
 void Level::GenerateRandomPitFall()
 {
 	 
-	int a = std::rand() % row;
-	int b = std::rand() % collumn;
-	newPitFall = new Chamber();
+
+	Chamber* newPitFall = new Chamber();
+	int x = Randomizer::mInstance->generateRandomRow(row);
+	int y = Randomizer::mInstance->generateRandomRow(collumn);
 
 	newPitFall->SetChamberType(2);
-	levelMap[a][b] = *newPitFall;
-
-	//levelMap[a][b] = ' ';
-
-	free(newPitFall);
+	newPitFall->PutStuffRandomlyInChamber();
+	levelMap[x][y] = *newPitFall;
+	delete newPitFall;
 }
 
 void Level::GenerateRandomRandomStairs()
 {
-	int a = std::rand() % row;
-	int b = std::rand() % collumn;
-	newStairs = new Chamber();
+	int x = Randomizer::mInstance->generateRandomRow(row);
+	int y = Randomizer::mInstance->generateRandomRow(collumn);
+
+	Chamber* newStairs = new Chamber();
 
 	newStairs->SetChamberType(3);
-	levelMap[a][b] = *newStairs;
-
-	free(newStairs);
+	newStairs->PutStuffRandomlyInChamber();
+	levelMap[x][y] = *newStairs;
+	delete newStairs;
 }
 
 void Level::FillAFullRow(int rowToFill)
@@ -157,7 +161,10 @@ int Level::GetStartRuimteYPositie()
 
 void Level::PrintStartPosition()
 {
-//	cout << "Start Position: " << startPosition.x << "," << startPosition.y << endl;
+	cout << "Start Position: " << startPosition.x << "," << startPosition.y << endl;
+
+	//TODO: ALSO print Start position chamber description
+ levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 }
 
 void Level::SetLevelNumber(int lvl)
@@ -167,9 +174,7 @@ void Level::SetLevelNumber(int lvl)
 
 void Level::PrintLevelNumber()
 {
-	//Memory leak below
-//	cout << "Level: " << levelNumber << endl;
-	cout << "Test" << endl;
+	cout << "Level: " << levelNumber << endl;
 }
 
 void Level::CheckWhetherHeroReachedStairs()
@@ -181,3 +186,7 @@ void Level::CheckWhetherHeroReachedStairs()
 	}
 }
 
+void Level::PrintLevelDescription()
+{
+	cout << "Welcome to the Level 1: Ruins of the Lost" << endl;
+}

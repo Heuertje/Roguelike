@@ -1,5 +1,7 @@
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
+
+//Memory leak detection
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -10,11 +12,15 @@
 #include <ctime>
 #include "character.h"
 #include "windows.h"
+
+>>>>>>> origin/Develop
 using namespace std;
 
 int main()
 {
+
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 
 	HWND console = GetConsoleWindow();
 	RECT r;
@@ -26,9 +32,13 @@ int main()
 //	Level MazeOfDungeons[10];
 
 
-//	std::srand((unsigned int)time(NULL)); // use current time as seed for random generator
-	Level firstLevel = Level();
+
+	std::srand((unsigned int)time(NULL));
+
+	Level firstLevel;
+
 	firstLevel.SetLevelNumber(1);
+	firstLevel.PrintLevelDescription();
 	firstLevel.FillLevel();
 	firstLevel.GenerateRandomStartLocation();
 	firstLevel.GenerateRandomPitFall();
@@ -45,6 +55,9 @@ int main()
 	CheckInput keyboard = CheckInput(firstLevel);
 
 
+	CheckInput keyboard = CheckInput(firstLevel);
+	
+
 	//int x;
 	//cin >> x;
 	//cout << "you entered" << x << endl;
@@ -54,5 +67,6 @@ int main()
 	//while (true){
 	//	
 	//}
+
 	return 0;
 }
