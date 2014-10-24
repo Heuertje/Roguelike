@@ -21,6 +21,7 @@ public:
 	// char dungeon[dungeonRowSize][dungeonCollumnSize];
 	 //char rooms[row][collumn];
 	   Chamber levelMap[20][20];
+
 	// char rooms[10][10];
 	// char dungeonHallways[row][collumn];
 	   int levelNumber = 0;
@@ -43,6 +44,7 @@ public:
 	 void SetLevelNumber(int lvl);
 	 void PrintLevelNumber();
 	 void CheckWhetherHeroReachedStairs();
+	 void PrintLevelDescription();
 	
 };
 

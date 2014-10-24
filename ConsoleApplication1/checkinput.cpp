@@ -10,11 +10,13 @@ CheckInput::CheckInput()
 CheckInput::CheckInput(Level lvl)
 {
 	level = lvl;
+	
 
-	while (1){
+	while (true){
+
 		if (_kbhit())
 		{
-			 key_code = _getch();
+			key_code = _getch();
 			 switch (key_code)
 			 {
 				 //links 
@@ -34,11 +36,11 @@ CheckInput::CheckInput(Level lvl)
 				 break;
 
 			 }
+
 		}
 		// do stuff depending on key_code
 		else
 		{
-
 			continue;
 		}
 	}
@@ -89,6 +91,8 @@ void CheckInput::Walk(int direction)
 			cout << "CASE 0: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 			level.PrintLevel();
 			level.PrintLegend();
+			level.PrintStartPosition();
+			level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
 		case 1:  //RIGHT
@@ -119,7 +123,8 @@ void CheckInput::Walk(int direction)
 				level.PrintLevel();
 				level.PrintLegend();
 		//	}
-
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 
 			break;
 
@@ -148,6 +153,8 @@ void CheckInput::Walk(int direction)
 				cout << "CASE 2: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
 		case 3: //UP
@@ -176,6 +183,8 @@ void CheckInput::Walk(int direction)
 				cout << " CASE 3: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
+				level.PrintStartPosition();
+				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		//	}
 
 			break;

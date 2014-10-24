@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include "Inventory.h"
-
+#include "Gear.h"
 using namespace std;
 
 class Character
@@ -19,6 +19,7 @@ class Character
 	int strength = 3;
 	int awareness = 0;
 	Inventory inventory;
+	Gear* gear;
 	
 	
 

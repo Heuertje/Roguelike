@@ -10,11 +10,11 @@ map::map()
 	int lijsty3[] = { 1, 2, 3, 4, 5 };
 	int lijsty4[] = { 1, 2, 3, 4, 5 };
 	int x = 1;
-	while (x < 5){
-		//todo iterate trough lists to create minimap
-		//use nested list for clean code
-		x++;
-	}
+	//while (x < 5){
+	//	//todo iterate trough lists to create minimap
+	//	//use nested list for clean code
+	//	x++;
+	//}
 }
 
 

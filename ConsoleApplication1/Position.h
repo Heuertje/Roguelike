@@ -2,7 +2,7 @@
 class Position
 {
 public:
-	static int x, y;
+	 static int x, y;
 
 	Position();
 	~Position();

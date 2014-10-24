@@ -1,16 +1,27 @@
 #pragma once
 #include "Description.h"
+#include "Enemy.h"
+#include "Item.h"
 using namespace std;
 
-class Chamber
+class Chamber : Description
 {
 public:
 
-	Description description;
+	
 	string chamberType;
 	unsigned char chamberSymbol;
 	char heroStartDungeon;
+
 	bool dungeonHeroStartState = false;
+
+	//Stochastic Chamber Elements:
+	Description* description;
+	Enemy* enemy;
+	Item* item; // sword, potion, holy grenade)
+	bool fourChairsExists = false;
+	bool tableExists = false;
+
 
 
 
@@ -19,11 +30,14 @@ public:
 	void DisposeObject();
 	void SetChamberType(int type);
 	string GetChamberType();
+	bool GetHeroStartPositionState();
+
 	void PutStuffRandomlyInChamber();
 	void GenerateRandomPickUp();
-	void GenerateRandomEnemiesInChamber();
-
+	void GenerateRandomEnemyInChamber();
+	void GenerateRandomChamberDecorativeItems();
+	void GenerateRandomDescription();
 	void AssignDungeonAsHeroStartPosition();
-	bool GetHeroStartPositionState();
+	void PrintChamberDescription();
 };
 

@@ -13,7 +13,7 @@ public:
 	//TODO: If possible: change 'string status' to enum
 	string status;
 	bool chair;
-
+	int randomDescriptionSelector;
 	Description();
 	~Description();
 	void SetStatusRandomly();
