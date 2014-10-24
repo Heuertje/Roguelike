@@ -1,23 +1,38 @@
 #pragma once
 
 #include "stdafx.h"
-#include "character.h"
 #include <cstdlib>
+#include <string>
+#include "Inventory.h"
 
-class character
+using namespace std;
+
+class Character
 {
-public:
-	int checkxp();
-	int increaselevel();
-	int increaseattack(int x);
-	int increasestrength(int x);
-	int increasehealth(int x);
-private:
+
+	private:
+	string name;
+	int level = 1;
+	int health = 30;
 	int xp = 0;
 	int attack = 3;
 	int strength = 3;
-	int health = 30;
-	int level = 1;
+	int awareness = 0;
+	Inventory inventory;
+	
+	
+
+	public:
+		Character();
+		~Character();
+		int checkxp();
+	int checkHP();
+	int increaselevel();
+	int increaseattack(int x);
+	int increasestrength(int x);
+	int increasemaxhealth(int x);
+	int increaseawareness(int x);
+	Item getItemFromInventory(int itemLocation);
 };
 
 
