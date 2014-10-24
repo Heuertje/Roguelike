@@ -27,7 +27,6 @@ class Character
 		Character();
 		~Character();
 		int checkxp();
-	int checkxp();
 	int checkHP();
 	int increaselevel();
 	int increaseattack(int x);

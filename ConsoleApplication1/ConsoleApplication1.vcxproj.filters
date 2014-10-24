@@ -46,19 +46,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Chamber.h">
-<<<<<<< HEAD
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Description.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-=======
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Description.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
->>>>>>> origin/Develop
     <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,15 +58,14 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-<<<<<<< HEAD
-=======
+
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Randomizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Gear.h">
->>>>>>> origin/Develop
+
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,15 +110,14 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-<<<<<<< HEAD
-=======
+
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Randomizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Gear.cpp">
->>>>>>> origin/Develop
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,0 +1,9 @@
+diff a/ConsoleApplication1/ConsoleApplication1.vcxproj b/ConsoleApplication1/ConsoleApplication1.vcxproj	(rejected hunks)
+@@ -90,6 +90,7 @@
+     <ClInclude Include="Combat.h" />
+     <ClInclude Include="Description.h" />
+     <ClInclude Include="Enemy.h" />
++<<<<<<< HEAD
+ =======
+     <ClInclude Include="Gear.h" />
+ >>>>>>> origin/Develop

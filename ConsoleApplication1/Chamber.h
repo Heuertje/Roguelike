@@ -21,18 +21,12 @@ public:
 	Item* item; // sword, potion, holy grenade)
 	bool fourChairsExists = false;
 	bool tableExists = false;
-
-
-
-
 	Chamber();
 	~Chamber();
 	void DisposeObject();
 	void SetChamberType(int type);
 	string GetChamberType();
-
 	bool GetHeroStartPositionState();
-
 	void PutStuffRandomlyInChamber();
 	void GenerateRandomPickUp();
 	void GenerateRandomEnemyInChamber();

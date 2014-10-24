@@ -14,8 +14,8 @@ Chamber::Chamber()
 Chamber::~Chamber()
 {
 	// DisposeObject();
-	delete item;
-	delete enemy;
+//	delete item;
+//	delete enemy;
 }
 
 void Chamber::DisposeObject()

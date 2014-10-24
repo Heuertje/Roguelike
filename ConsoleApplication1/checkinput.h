@@ -9,9 +9,7 @@ using namespace std;
 
 class CheckInput
 {
-
 	public:
-
 		string input;
 		bool arrowcontrols;
 

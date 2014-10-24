@@ -1,7 +1,7 @@
 #pragma once
 class Position
 {
-
+public:
 	 static int x, y;
 
 	Position();

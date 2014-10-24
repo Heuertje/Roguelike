@@ -13,7 +13,6 @@
 #include "character.h"
 #include "windows.h"
 
->>>>>>> origin/Develop
 using namespace std;
 
 int main()
@@ -54,8 +53,6 @@ int main()
 	Bas.increaselevel();
 	CheckInput keyboard = CheckInput(firstLevel);
 
-
-	CheckInput keyboard = CheckInput(firstLevel);
 	
 
 	//int x;

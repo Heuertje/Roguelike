@@ -11,6 +11,7 @@ CheckInput::CheckInput()
 {
 
 }
+CheckInput::~CheckInput(){}
 
 CheckInput::CheckInput(Level lvl)
 {
@@ -79,15 +80,7 @@ CheckInput::CheckInput(Level lvl)
 				else
 				{
 				}
-
-
-
-
-			}
-
-		
-
-		
+			}	
 	}
 
 
