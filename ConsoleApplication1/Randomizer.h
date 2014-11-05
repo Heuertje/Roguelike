@@ -6,7 +6,6 @@ public:
 	~Randomizer();
 
 	static Randomizer* mInstance;
-
 	static Randomizer *Instance()
 	{
 		if (mInstance == 0)

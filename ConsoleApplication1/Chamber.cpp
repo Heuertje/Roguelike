@@ -13,6 +13,7 @@ Chamber::Chamber()
 
 Chamber::~Chamber()
 {
+
 	// DisposeObject();
 //	delete item;
 //	delete enemy;
@@ -21,6 +22,8 @@ Chamber::~Chamber()
 void Chamber::DisposeObject()
 {
 	delete this;
+//	delete[] description;
+
 }
 
 void Chamber::SetChamberType(int type)
@@ -72,17 +75,25 @@ void Chamber::PutStuffRandomlyInChamber()
 void Chamber::GenerateRandomPickUp()
 {
 	//TODO: Generate random pick-up items for Hero
+	//Memory leak line below
 
-	item = new Item();
+//	int type = Randomizer::mInstance->generateRandomNumber(3);
+
+//	Item::setItemType(type);
+	
+
 	//TODO: Generate random pick-up items for Hero
-	item->setItemType(Randomizer::mInstance->generateRandomNumber(3));
+//	item->setItemType(Randomizer::mInstance->generateRandomNumber(3));
+//	delete item;
 }
 
 void Chamber::GenerateRandomEnemyInChamber()
 {
+	//Memory leak line below
 	enemy = new Enemy();
 	//TODO: Do I have to make a new object of a enemy?? IMPORTANT!
 	enemy->setEnemyType(Randomizer::mInstance->generateRandomNumber(7));
+	delete enemy;
 }
 
 void Chamber::GenerateRandomChamberDecorativeItems()
@@ -102,9 +113,9 @@ void Chamber::GenerateRandomChamberDecorativeItems()
 
 void Chamber::GenerateRandomDescription()
 {
-	description = new Description();
-
-}
+	//Memory leak line below
+	description = Description::GenerateDescription();
+} 
 
 void Chamber::AssignDungeonAsHeroStartPosition()
 {
@@ -116,5 +127,7 @@ void Chamber::AssignDungeonAsHeroStartPosition()
 
 void Chamber::PrintChamberDescription()
 {
-	cout << description->descriptioninfo << endl;
+//	cout << description->descriptioninfo << endl;
+	cout << description << endl;
+
 }

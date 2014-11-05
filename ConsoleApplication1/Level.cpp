@@ -90,7 +90,7 @@ Position Level::GenerateRandomStartLocation()
 	newStartChamber->PutStuffRandomlyInChamber();
 
 	levelMap[x][y] = *newStartChamber;
-	free(newStartChamber);
+	delete newStartChamber;
 	
 	startPosition = Position(x, y);
 	return startPosition;

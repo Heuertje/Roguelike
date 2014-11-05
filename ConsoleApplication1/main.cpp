@@ -5,7 +5,6 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
-
 #include "stdafx.h"
 #include "Level.h"
 #include "CheckInput.h"
@@ -15,11 +14,17 @@
 
 using namespace std;
 
+#include <windows.h> 
+#include <stdio.h> 
+
+bool gameloop = true;
+
+
+
 int main()
 {
 
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
 
 	HWND console = GetConsoleWindow();
 	RECT r;
@@ -28,7 +33,7 @@ int main()
 	MoveWindow(console, r.left, r.top, 800, 800, TRUE); // 800 width, 100 height
 
 	//Memory leak: the [10] makes it have a multiplied amount of memory leaks
-//	Level MazeOfDungeons[10];
+	//	Level MazeOfDungeons[10];
 
 
 
@@ -46,14 +51,22 @@ int main()
 	firstLevel.PrintLevel();
 	firstLevel.PrintLegend();
 	firstLevel.PrintStartPosition();
-	
-	Character Bas = Character();
-	Bas.increaselevel();
-	Bas.increaselevel();
-	Bas.increaselevel();
-	CheckInput keyboard = CheckInput(firstLevel);
 
+
+	//	Character::mInstance->increaselevel();
+	Character::Instance().increaselevel();
 	
+	while (gameloop){
+	
+
+			CheckInput keyboard = CheckInput(firstLevel);
+			if (keyboard.gameloop == false){
+				return 0;
+
+			}
+
+
+	}
 
 	//int x;
 	//cin >> x;

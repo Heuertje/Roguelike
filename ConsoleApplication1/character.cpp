@@ -1,12 +1,18 @@
 #include "stdafx.h"
 #include "character.h"
 
+int level = 1;
+int health = 30;
+int xp = 0;
+int attack = 3;
+int strength = 3;
+int awareness = 0;
 
-Character::Character(){}
 Character::~Character(){}
 
+//Character *Character::mInstance = 0;
 
-	int Character::checkxp(){
+int Character::checkxp(){
 		if (level == 1 && xp > 100){
 			increaselevel();
 		}
@@ -37,7 +43,8 @@ Character::~Character(){}
 			increasestrength(randys);
 			int health = rand() % 7 +1;
 			increasemaxhealth(health);
-			cout << endl << endl << "Congratulationssss! you are now Level: " << level << endl;
+			cout << endl << endl << "Congratulations! you are now Level: " << level << endl;
+			cout << "Your level is: " << level << endl;
 			cout << "Your stats are now:" << endl << "Attack " << attack << ", Strength " << strength << endl;
 			
 			

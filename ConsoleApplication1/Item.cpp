@@ -11,7 +11,7 @@ Item::~Item()
 {
 }
 
-void Item::setItemType(int type)
+string Item::setItemType(int type)
 {
 	switch (type)
 	{
@@ -75,6 +75,7 @@ void Item::setItemType(int type)
 		//nothing at the moment
 		break;
 	}
+	return itemtype;
 }
 
 

@@ -15,7 +15,7 @@ public:
 
 	Item();
 	~Item();
-	void setItemType(int type);
+	string setItemType(int type);
 
 	string getItemType();
 };

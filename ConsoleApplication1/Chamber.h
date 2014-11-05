@@ -16,7 +16,7 @@ public:
 	bool dungeonHeroStartState = false;
 
 	//Stochastic Chamber Elements:
-	Description* description;
+	string description;
 	Enemy* enemy;
 	Item* item; // sword, potion, holy grenade)
 	bool fourChairsExists = false;
