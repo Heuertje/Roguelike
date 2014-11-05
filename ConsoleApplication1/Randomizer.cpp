@@ -7,7 +7,6 @@ Randomizer::Randomizer()
 {	// use current time as seed for random generator
 }
 
-
 Randomizer::~Randomizer()
 {
 	//delete mInstance;

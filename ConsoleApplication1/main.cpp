@@ -28,30 +28,37 @@ int main()
 	MoveWindow(console, r.left, r.top, 800, 800, TRUE); // 800 width, 100 height
 
 	//Memory leak: the [10] makes it have a multiplied amount of memory leaks
-//	Level MazeOfDungeons[10];
+	vector<Level> mazeDungeons;
 
 
+	Level firstlevel;
+
+	firstlevel.SetLevelNumber(1);
+	firstlevel.FillLevel();
+
+
+	if (firstlevel.levelNumber == 1)
+	{
+		firstlevel.GenerateRandomPitFall();
+		firstlevel.GenerateRandomStartLocation();
+		firstlevel.GenerateRandomRandomStairs();
+	}
+
+	firstlevel.PrintLevelNumber();
+	firstlevel.PrintLevel();
+	firstlevel.PrintLevelDescription();
+	firstlevel.PrintLegend();
+	firstlevel.PrintStartPosition();
+	
 
 	std::srand((unsigned int)time(NULL));
 
-	Level firstLevel;
 
-	firstLevel.SetLevelNumber(1);
-	firstLevel.PrintLevelDescription();
-	firstLevel.FillLevel();
-	firstLevel.GenerateRandomStartLocation();
-	firstLevel.GenerateRandomPitFall();
-	firstLevel.GenerateRandomRandomStairs();
-	firstLevel.PrintLevelNumber();
-	firstLevel.PrintLevel();
-	firstLevel.PrintLegend();
-	firstLevel.PrintStartPosition();
-	
-	Character Bas = Character();
-	Bas.increaselevel();
-	Bas.increaselevel();
-	Bas.increaselevel();
-	CheckInput keyboard = CheckInput(firstLevel);
+	//Character Bas = Character();
+	//Bas.increaselevel();
+	//Bas.increaselevel();
+	//Bas.increaselevel();
+	CheckInput keyboard = CheckInput(firstlevel);
 
 	
 

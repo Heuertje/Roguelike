@@ -27,7 +27,7 @@ CheckInput::CheckInput(Level lvl)
 			{
 				key_code = _getch();
 				switch (key_code)
-				{
+				{					
 					//links 
 				case 75: CheckInput::Walk(0);
 					break;
@@ -124,7 +124,6 @@ void CheckInput::Walk(int direction)
 			cout << "CASE 0: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 			level.PrintLevel();
 			level.PrintLegend();
-			level.PrintStartPosition();
 			level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
@@ -156,7 +155,6 @@ void CheckInput::Walk(int direction)
 				level.PrintLevel();
 				level.PrintLegend();
 		//	}
-				level.PrintStartPosition();
 				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 
 			break;
@@ -186,7 +184,6 @@ void CheckInput::Walk(int direction)
 				cout << "CASE 2: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
-				level.PrintStartPosition();
 				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 			break;
 
@@ -216,7 +213,6 @@ void CheckInput::Walk(int direction)
 				cout << " CASE 3: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 				level.PrintLevel();
 				level.PrintLegend();
-				level.PrintStartPosition();
 				level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		//	}
 

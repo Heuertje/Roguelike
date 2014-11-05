@@ -8,11 +8,14 @@
 #include <sstream>
 
 #include "Randomizer.h"
+
 using namespace std;
 
 Level::Level()
 {
+
 }
+
 
 Level::~Level()
 {
@@ -34,7 +37,8 @@ void Level::FillLevel()
 			
 
 			Chamber* newChamber = new Chamber();
-			newChamber->SetChamberType(0);
+			newChamber->SetChamberType(Randomizer::mInstance->generateRandomNumber(3));
+
 			newChamber->PutStuffRandomlyInChamber();
 			levelMap[n][m] = *newChamber;
 			
@@ -189,4 +193,24 @@ void Level::CheckWhetherHeroReachedStairs()
 void Level::PrintLevelDescription()
 {
 	cout << "Welcome to the Level 1: Ruins of the Lost" << endl;
+}
+
+bool Level::LevelSelected(bool isSelected){
+	if (isSelected == true){
+		PrintLevelNumber();
+		PrintLevel();
+		PrintLevelDescription();
+		//TODO: Andrew PrintCurrentHeroPosition();
+		return true;
+	}
+	else
+	{
+
+		return false;
+	}
+}
+
+void Level::SetHeroCurrentPosition(Position currentPosition){
+
+
 }

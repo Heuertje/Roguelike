@@ -30,18 +30,22 @@ void Chamber::SetChamberType(int type)
 		case 0:	
 			chamberType = "Dungeon";	
 			chamberSymbol = 177;
+			//  block symbol Dungeon
 			break;
 		case 1:	
 			chamberType = "Hallway";
 			chamberSymbol = 197;
+			// cross symbol Hallway
 			break;
 		case 2:
 			chamberType = "Pitfall";
 			chamberSymbol = ' ';
+			// dark is pitfall
 			break;
 		case 3:
 			chamberType = "Stairs";
 	     	chamberSymbol = 92;
+			//  \ is stairs
 			break;
 			
 		default:
