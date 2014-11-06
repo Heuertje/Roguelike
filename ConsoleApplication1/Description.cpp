@@ -6,10 +6,10 @@
 Description::Description()
 {
 	descriptioninfo = "Description: There";
-	randomDescriptionSelector = Randomizer::mInstance->generateRandomNumber(7);
+	randomDescriptionSelector = Randomizer::Instance().generateRandomNumber(7);
 	switch (randomDescriptionSelector)
 	{
-		case 0: descriptioninfo += " is A big ass medieval candle"; break;
+		case 0: descriptioninfo += " is a big ass medieval candle"; break;
 		case 1: descriptioninfo += " is a chair"; break;
 		case 2: descriptioninfo += " are 2 chairs"; break;
 		case 3: descriptioninfo += " are 3 chairs"; break;

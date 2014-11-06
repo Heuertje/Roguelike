@@ -11,13 +11,14 @@ CheckInput::CheckInput()
 {
 
 }
+
 CheckInput::~CheckInput(){}
 
 CheckInput::CheckInput(Level lvl)
 {
 	level = lvl;
 	input = "";
-	arrowcontrols = false;
+	arrowcontrols = true;
 
 	// Left = 0, Right = 1, Down = 2, Up = 3
 	if (arrowcontrols)

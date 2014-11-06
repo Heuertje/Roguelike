@@ -21,6 +21,7 @@ public:
 	 Chamber levelMap[20][20];
 	 int levelNumber;
 
+	 int currentLevel;
 	 Level();
 	 Level(int levelNumber);
 	~Level();
@@ -41,7 +42,7 @@ public:
 	 void PrintLevelNumber();
 	 void CheckWhetherHeroReachedStairs();
 	 void PrintLevelDescription();
-	 bool LevelSelected(bool isSelected);
+	 int SetCurrentLevel(int setLevel);
 	 void SetHeroCurrentPosition(Position currentPosition);
 	
 };

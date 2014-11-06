@@ -1,23 +1,34 @@
 #pragma once
 class Randomizer
 {
+
+
+
+
 public:
-	Randomizer();
+
 	~Randomizer();
 
-	static Randomizer* mInstance;
 
-	static Randomizer *Instance()
+
+	static Randomizer& Instance()
 	{
-		if (mInstance == 0)
-		{
-			mInstance = new  Randomizer();
-		}
+		static Randomizer mInstance;
 		return mInstance;
 	}
 
 	int generateRandomRow(int rowMaximumValue);
 	int generateRandomCollumn(int collumnMaximumValue);
 	int generateRandomNumber(int maximumNumber);
+
+
+
+
+private:
+	Randomizer(){}
+
+	Randomizer(Randomizer const&);
+	void operator=(Randomizer const&);
+
 };
 
