@@ -16,6 +16,7 @@ public:
 	int enemyDefense;
 	int enemyLevel;
 	int enemyStrength;
+	string descriptioninfo;
 	void setEnemyStats();
 	void setEnemyLevel();
 	void increaseEnemyLevel();
@@ -27,12 +28,12 @@ public:
 	int getEnemyDef();
 	int getEnemyAttack();
 	int getEnemyStrength();
-	
+	void EnemyData();
 	
 	int decreaseEnemyHP(int x);
 	Enemy();
 	~Enemy();
-	void setEnemyType(int type);
+	string setEnemyType(int type);
 	void CreateEnemyAmount();
 };
 

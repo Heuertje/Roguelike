@@ -8,6 +8,7 @@ Enemy::Enemy()
 {
 	isBoss = false;
 	Enemy::setEnemyStats();
+	descriptioninfo = Enemy::setEnemyType(Randomizer::Instance().generateRandomNumber(6));
 }
 
 
@@ -30,9 +31,13 @@ void Enemy::setEnemyLevel(){
 	if (isBoss){
 		charlevel += (charlevel / 2);
 	}
-	for (int i = 0; charlevel; i++){
+	for (int i = 0; i <= charlevel; i++){
 		Enemy::increaseEnemyLevel();
 	}
+}
+
+void Enemy::EnemyData(){
+	cout << descriptioninfo << endl;
 }
 
 int Enemy::decreaseEnemyHP(int x){
@@ -67,7 +72,7 @@ void Enemy::increaseEnemyLevel(){
 	enemyStrength = Randomizer::Instance().generateRandomNumber(3)+1;
 }
 
-void Enemy::setEnemyType(int type)
+string Enemy::setEnemyType(int type)
 {
 	switch (type)
 	{
@@ -78,5 +83,7 @@ void Enemy::setEnemyType(int type)
 	case 4: descriptioninfo = "small, tiny living rock"; break;
 	case 5: descriptioninfo = "living smartphone"; break;
 	case 6: descriptioninfo = "Evil Harry Potter"; break;
+	default: descriptioninfo = "Unknown Enemy";
 	}
+	return descriptioninfo;
 }

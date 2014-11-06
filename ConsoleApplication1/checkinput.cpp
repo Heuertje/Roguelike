@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
+#include "Randomizer.h"
 CheckInput::CheckInput()
 {
 
@@ -80,6 +80,16 @@ CheckInput::CheckInput(Level& lvl)
 		else if (input == "hpdown"){
 			Character::Instance().decreasehealth(10);
 
+		}
+		else if (input == "enemytest"){
+			Enemy* rat = new Enemy();
+			rat->setEnemyLevel();
+			cout << "Enemy HP: " << rat->getEnemyHP() << endl;
+			rat->EnemyData();
+			delete rat;
+		}
+		else{
+			cout << "Sorry, I didn't catch that command. Please try again.";
 		}
 
 }
