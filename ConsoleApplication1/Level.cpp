@@ -81,8 +81,8 @@ Position Level::GenerateRandomStartLocation()
 
 {
 	
-	int x = Randomizer::mInstance->generateRandomRow(row);
-	int y = Randomizer::mInstance->generateRandomRow(collumn);
+	int x = Randomizer::Instance().generateRandomRow(row);
+	int y = Randomizer::Instance().generateRandomRow(collumn);
 
 	Chamber* newStartChamber = new Chamber();
 
@@ -101,8 +101,8 @@ void Level::GenerateRandomPitFall()
 	 
 
 	Chamber* newPitFall = new Chamber();
-	int x = Randomizer::mInstance->generateRandomRow(row);
-	int y = Randomizer::mInstance->generateRandomRow(collumn);
+	int x = Randomizer::Instance().generateRandomRow(row);
+	int y = Randomizer::Instance().generateRandomRow(collumn);
 
 	newPitFall->SetChamberType(2);
 	newPitFall->PutStuffRandomlyInChamber();
@@ -112,8 +112,8 @@ void Level::GenerateRandomPitFall()
 
 void Level::GenerateRandomRandomStairs()
 {
-	int x = Randomizer::mInstance->generateRandomRow(row);
-	int y = Randomizer::mInstance->generateRandomRow(collumn);
+	int x = Randomizer::Instance().generateRandomRow(row);
+	int y = Randomizer::Instance().generateRandomRow(collumn);
 
 	Chamber* newStairs = new Chamber();
 

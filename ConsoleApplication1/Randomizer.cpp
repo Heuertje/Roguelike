@@ -3,17 +3,12 @@
 #include <ctime> // Necessary for the 'std::rand() line
 
 
-Randomizer::Randomizer()
-{	// use current time as seed for random generator
-}
 
 
 Randomizer::~Randomizer()
 {
-	//delete mInstance;
 }
 
-Randomizer *Randomizer::mInstance = 0;
 
 int Randomizer::generateRandomRow(int rowMaximumValue)
 {

@@ -19,9 +19,20 @@ CheckInput::CheckInput(Level& lvl)
 	input = "";
 	gameloop = true;
 	// Left = 0, Right = 1, Down = 2, Up = 3
+	string input; 
+	
+
 
 		cout << "What do you want to be your next action? " << endl;
 		getline(cin, input);
+
+		for (int i = 0; i < input.length(); i++){ // input.length() gets the length of the string
+			// convert every character of input to lowercase ( I think there are other methods to do this)
+			input[i] = tolower(input[i]);
+		}
+
+
+
 		if (input == "up" || input == "u" || input == "north" || input == "n"){
 			CheckInput::Walk(3);
 		}
@@ -39,13 +50,36 @@ CheckInput::CheckInput(Level& lvl)
 		{
 			CheckInput::Walk(1);
 		}
-		else if (input == "Mwuahaha")
+		else if (input == "mwuahaha")
 		{
 			Character::Instance().increaselevel();
 
 		}
+		else if (input == "checkstats" || input == "stats")
+		{
+			Character::Instance().checkstats();
+
+		}
+		else if (input == "checkhp" || input == "hp")
+		{
+			Character::Instance().checkHP();
+
+		}
 		else if (input == "quit" || input == "q" ){
 			gameloop = false;
+		}
+		else if (input == "showmap" || input == "level"){
+			level.PrintLevel();
+			level.PrintLegend();
+			level.PrintStartPosition();
+		}
+		else if (input == "hpup"){
+			Character::Instance().increasehealth(10);
+
+		}
+		else if (input == "hpdown"){
+			Character::Instance().decreasehealth(10);
+
 		}
 
 }
@@ -119,7 +153,6 @@ void CheckInput::Walk(int direction)
 		cout << "CASE 1: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
 		level.PrintLevel();
 		level.PrintLegend();
-		//	}
 		level.PrintStartPosition();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 

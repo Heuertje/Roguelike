@@ -52,31 +52,20 @@ int main()
 	firstLevel.PrintLegend();
 	firstLevel.PrintStartPosition();
 
-
-	//	Character::mInstance->increaselevel();
-	Character::Instance().increaselevel();
+	Character::Instance().setstats();
 	
 	while (gameloop){
-	
-
-			CheckInput keyboard = CheckInput(firstLevel);
-			if (keyboard.gameloop == false){
-				return 0;
-
-			}
-
-
+		CheckInput keyboard = CheckInput(firstLevel);
+		if (keyboard.gameloop == false){
+			return 0;
+		}
+		if (!Character::Instance().isAlive()){
+			system("CLS");
+			break;
+		}
 	}
-
-	//int x;
-	//cin >> x;
-	//cout << "you entered" << x << endl;
-	//cin.clear();
-	//cin.ignore(255, '\n');
-	//cin.get();
-	//while (true){
-	//	
-	//}
-
+	
+	cout << "Game Over" << endl;
+	main();
 	return 0;
 }

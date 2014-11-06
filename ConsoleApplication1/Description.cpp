@@ -15,7 +15,7 @@ Description::~Description()
 
 string Description::GenerateDescription(){
 	descriptioninfo = "Description: There";
-	randomDescriptionSelector = Randomizer::mInstance->generateRandomNumber(7);
+	randomDescriptionSelector = Randomizer::Instance().generateRandomNumber(7);
 	switch (randomDescriptionSelector)
 	{
 	case 0: descriptioninfo += " is A big ass medieval candle"; break;

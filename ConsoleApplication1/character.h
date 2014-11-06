@@ -11,33 +11,46 @@ class Character
 {
 
 public:
-
-
+	int level;
+	int health;
+	int maxhealth;
+	int xp;
+	int attack;
+	int strength;
+	int awareness;
+	int defense;
 	~Character();
-
-
 	static Character& Instance()
 	{
 		static Character    mInstance; // Guaranteed to be destroyed.
 		// Instantiated on first use.
 		return mInstance;
 	}
-	//static Character* mInstance;
-	//static Character *Instance()
-	//{
-	//	if (mInstance == 0)
-	//	{
-	//		mInstance = new Character();
-	//	}
-	//	return mInstance;
-	//}
+
+	void checkstats();
 	int checkxp();
 	int checkHP();
+	
+	int getDef();
+	int getAttack();
+	int getlevel();
+	int getHealth();
+	int getStrength();
+
+	void setstats();
+
+	int increasexp(int x);
 	int increaselevel();
 	int increaseattack(int x);
+	int increasedefense(int x);
 	int increasestrength(int x);
 	int increasemaxhealth(int x);
+	int increasehealth(int x);
 	int increaseawareness(int x);
+
+	int decreasehealth(int x);
+	
+	bool isAlive();
 	Item getItemFromInventory(int itemLocation);
 
 private:

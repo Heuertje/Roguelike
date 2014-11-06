@@ -2,27 +2,81 @@
 #include "Enemy.h"
 
 #include "Description.h"
-
+#include "character.h"
+#include "Randomizer.h"
 Enemy::Enemy()
 {
+	isBoss = false;
+	Enemy::setEnemyStats();
 }
+
 
 
 Enemy::~Enemy()
 {
+
 }
 
+void Enemy::setEnemyStats(){
+	enemyLevel = 0;
+	enemyMaxHealth = 5;
+	enemyHealth = enemyMaxHealth;
+	enemyAttack = 2;
+	enemyDefense = 2;
+	enemyStrength = 1;
+}
+void Enemy::setEnemyLevel(){
+	int charlevel = Character::Instance().getlevel();
+	if (isBoss){
+		charlevel += (charlevel / 2);
+	}
+	for (int i = 0; charlevel; i++){
+		Enemy::increaseEnemyLevel();
+	}
+}
+
+int Enemy::decreaseEnemyHP(int x){
+	enemyHealth -= x;
+	return enemyHealth;
+}
+int Enemy::getEnemyHP(){
+	return enemyHealth;
+}
+int Enemy::getEnemyLevel(){
+	return enemyLevel;
+}
+
+int Enemy::getEnemyDef(){
+	return enemyDefense;
+}
+int Enemy::getEnemyAttack(){
+	return enemyAttack;
+}
+int Enemy::getEnemyStrength(){
+	return enemyStrength;
+}
+
+void Enemy::increaseEnemyLevel(){
+	enemyLevel += 1;
+	int increasehealth = Randomizer::Instance().generateRandomNumber(8)+1;
+	enemyMaxHealth += increasehealth;
+	
+	enemyHealth += increasehealth;
+	enemyAttack = Randomizer::Instance().generateRandomNumber(3)+1;
+	enemyDefense = Randomizer::Instance().generateRandomNumber(3)+1;
+	enemyStrength = Randomizer::Instance().generateRandomNumber(3)+1;
+}
 
 void Enemy::setEnemyType(int type)
 {
 	switch (type)
 	{
-	case 0: descriptioninfo = "A shiny monster"; break;
-	case 1: descriptioninfo = "A stupid dwarf"; break;
-	case 2: descriptioninfo = "A holy but useless magician"; break;
-	case 3: descriptioninfo = "A stinky fart"; break;
-	case 4: descriptioninfo = "Sauron, but smaller"; break;
-	case 5: descriptioninfo = "Gandalf, but bigger, shaven, has better sense of fashion, with a walking stick in a wheelchair."; break;
+	case 0: descriptioninfo = "shiny monster"; break;
+	case 1: descriptioninfo = "stupid dwarf"; break;
+	case 2: descriptioninfo = "holy but useless magician"; break;
+	case 3: descriptioninfo = "stinky fart"; break;
+	case 4: descriptioninfo = "small, tiny living rock"; break;
+	case 5: descriptioninfo = "living smartphone"; break;
 	case 6: descriptioninfo = "Evil Harry Potter"; break;
 	}
 }

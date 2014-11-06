@@ -77,13 +77,13 @@ void Chamber::GenerateRandomPickUp()
 	//TODO: Generate random pick-up items for Hero
 	//Memory leak line below
 
-//	int type = Randomizer::mInstance->generateRandomNumber(3);
+//	int type = Randomizer::Instance().generateRandomNumber(3);
 
 //	Item::setItemType(type);
 	
 
 	//TODO: Generate random pick-up items for Hero
-//	item->setItemType(Randomizer::mInstance->generateRandomNumber(3));
+//	item->setItemType(Randomizer::Instance().generateRandomNumber(3));
 //	delete item;
 }
 
@@ -92,14 +92,15 @@ void Chamber::GenerateRandomEnemyInChamber()
 	//Memory leak line below
 	enemy = new Enemy();
 	//TODO: Do I have to make a new object of a enemy?? IMPORTANT!
-	enemy->setEnemyType(Randomizer::mInstance->generateRandomNumber(7));
+	enemy->setEnemyType(Randomizer::Instance().generateRandomNumber(7));
+
 	delete enemy;
 }
 
 void Chamber::GenerateRandomChamberDecorativeItems()
 {
 	//TODO: Implement random chairs and tables
-	int a = Randomizer::mInstance->generateRandomNumber(3);
+	int a = Randomizer::Instance().generateRandomNumber(3);
 	switch (a)
 	{
 	case 0: fourChairsExists = true; break;
