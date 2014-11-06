@@ -2,20 +2,22 @@
 #include "Level.h"
 #include <ctime>
 #include "Chamber.h"
-
 #include <iostream>
 #include <string>
 #include <sstream>
-
 #include "Randomizer.h"
+#include "LevelManager.h"
+
 using namespace std;
 
 Level::Level()
 {
+	currentLevel = 0;
 }
 
 Level::~Level()
 {
+	cout << " test" << endl;
 	delete newStairs;
 	delete newStartChamber;
 	delete newPitFall;
@@ -28,13 +30,11 @@ void Level::FillLevel()
 
 	for (int n = 0; n < row; n++)
 	{
-
 		for (int m = 0; m < collumn; m++)
 		{
-			
-
 			Chamber* newChamber = new Chamber();
-			newChamber->SetChamberType(0);
+			newChamber->SetChamberType(Randomizer::Instance().generateRandomNumber(3));
+
 			newChamber->PutStuffRandomlyInChamber();
 			levelMap[n][m] = *newChamber;
 			
@@ -77,8 +77,8 @@ void Level::PrintLegend()
 	cout << ". : Niet bezocht" << endl;
 }
 
+//Generate and Assign Start Position to hero
 Position Level::GenerateRandomStartLocation()
-
 {
 	
 	int x = Randomizer::Instance().generateRandomRow(row);
@@ -93,6 +93,7 @@ Position Level::GenerateRandomStartLocation()
 	delete newStartChamber;
 	
 	startPosition = Position(x, y);
+
 	return startPosition;
 }
 
@@ -112,15 +113,63 @@ void Level::GenerateRandomPitFall()
 
 void Level::GenerateRandomRandomStairs()
 {
+
+
 	int x = Randomizer::Instance().generateRandomRow(row);
 	int y = Randomizer::Instance().generateRandomRow(collumn);
 
+
+	//int x2 = Randomizer::mInstance.generateRandomRow(row);
+	//int y2 = Randomizer::mInstance.generateRandomRow(collumn);
+
+	int x2 = 12;
+	int y2 = 6;
+
 	Chamber* newStairs = new Chamber();
 
-	newStairs->SetChamberType(3);
-	newStairs->PutStuffRandomlyInChamber();
-	levelMap[x][y] = *newStairs;
-	delete newStairs;
+	switch (levelNumber)
+	{
+
+	case 1:
+	{
+			  //Level 1 Stairs Down ONLY
+			  newStairs->SetChamberType(3);
+			  newStairs->PutStuffRandomlyInChamber();
+			  levelMap[x][y] = *newStairs;
+			  delete newStairs;
+			  break;
+	}
+
+	case 2:
+	{
+			  //Level 2 Stairs Down and Up
+			  newStairs->SetChamberType(3);
+			  newStairs->PutStuffRandomlyInChamber();
+			  levelMap[x][y] = *newStairs;
+			  delete newStairs;
+
+			  Chamber*secondStairs = new Chamber();
+			  secondStairs->PutStuffRandomlyInChamber();
+			  secondStairs->SetChamberType(4);
+			  levelMap[x2][y2] = *secondStairs;
+			  delete secondStairs;
+	}
+		break;
+
+
+	case 3:
+	{
+			  //Level 3 Stairs Up
+			  newStairs->SetChamberType(4);
+			  newStairs->PutStuffRandomlyInChamber();
+			  levelMap[5][8] = *newStairs;
+			  delete newStairs;
+			  break;
+	}
+
+		//newStairs.PutStuffRandomlyInChamber();
+	}
+
 }
 
 void Level::FillAFullRow(int rowToFill)
@@ -179,14 +228,62 @@ void Level::PrintLevelNumber()
 
 void Level::CheckWhetherHeroReachedStairs()
 {
-	// If Hero position has reached the stairs:
+	// If Hero position has reached the (down) stairs:
+	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 'L')
+	{
+		cout << "Stairs Down Reached!" << endl;
+		// Level++
+		currentLevel++;
+		LevelManager::Instance().SetCurrentLevel(currentLevel);
+		// Print Current Level
+		// Print other descriptions
+
+	}
+
+	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 'H')
+	{
+		cout << "Stairs UP Reached!" << endl;
+		// Level--
+		// Print Current Level
+		// Print other descriptions
+		currentLevel--;
+		LevelManager::Instance().SetCurrentLevel(currentLevel);
+	}
+
+
 	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 92)
 	{
-		cout << "Stairs Reached!" << endl;
+		cout << "Stairs Down Reached!" << endl;
+		// Level++
+		// Print Current Level
+		// Print other descriptions
 	}
+
+	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 47)
+	{
+		cout << "Stairs UP Reached!" << endl;
+		// Level--
+		// Print Current Level
+		// Print other descriptions
+	}
+
+
+
 }
 
 void Level::PrintLevelDescription()
 {
 	cout << "Welcome to the Level 1: Ruins of the Lost" << endl;
+}
+
+int Level::SetCurrentLevel(int setLevel){
+
+	currentLevel = setLevel;
+
+	return currentLevel;
+}
+
+void Level::SetHeroCurrentPosition(Position currentPosition){
+
+
 }

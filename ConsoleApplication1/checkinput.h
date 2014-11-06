@@ -10,17 +10,24 @@ using namespace std;
 class CheckInput
 {
 	public:
+		static CheckInput& Instance(){
+			static CheckInput mInstance;
+			return mInstance;
+		}
 		bool gameloop;
+		bool arrowcontrols;
 		string input;
 		int key_code;
 		Position startPosition;
-		Level level;
-		CheckInput();
-		CheckInput(Level& firstlvl);
+		Level lvl;
+		void CheckingInput(Level& lvl);
 		~CheckInput();
 
 		void CheckInput::Walk(int direction);
 		void SetStartPosition(Position value);
-
+private:
+	CheckInput(){}
+	CheckInput(CheckInput const&);
+	void operator=(CheckInput const&);
 };
 

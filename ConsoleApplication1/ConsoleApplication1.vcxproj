@@ -94,7 +94,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="map.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="stdafx.h" />
@@ -112,13 +112,12 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="map.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

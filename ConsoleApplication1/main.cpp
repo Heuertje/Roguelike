@@ -3,6 +3,8 @@
 
 //Memory leak detection
 #define _CRTDBG_MAP_ALLOC
+#include <windows.h> 
+#include <stdio.h> 
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "stdafx.h"
@@ -11,11 +13,10 @@
 #include <ctime>
 #include "character.h"
 #include "windows.h"
-
+#include "LevelManager.h"
 using namespace std;
 
-#include <windows.h> 
-#include <stdio.h> 
+
 
 bool gameloop = true;
 
@@ -30,35 +31,104 @@ int main()
 	RECT r;
 	GetWindowRect(console, &r); //stores the console's current dimensions
 
-	MoveWindow(console, r.left, r.top, 800, 800, TRUE); // 800 width, 100 height
+	MoveWindow(console, r.left, r.top, 800, 600, TRUE); // 800 width, 100 height
 
-	//Memory leak: the [10] makes it have a multiplied amount of memory leaks
-	//	Level MazeOfDungeons[10];
-
+	//vector<Level> mazeDungeons;
 
 
 	std::srand((unsigned int)time(NULL));
 
-	Level firstLevel;
 
-	firstLevel.SetLevelNumber(1);
-	firstLevel.PrintLevelDescription();
-	firstLevel.FillLevel();
-	firstLevel.GenerateRandomStartLocation();
-	firstLevel.GenerateRandomPitFall();
-	firstLevel.GenerateRandomRandomStairs();
-	firstLevel.PrintLevelNumber();
-	firstLevel.PrintLevel();
-	firstLevel.PrintLegend();
-	firstLevel.PrintStartPosition();
+	Level firstlevel;
+	Level secondLevel;
+	Level thirdLevel;
 
-	Character::Instance().setstats();
+	int selectedLevel = firstlevel.SetCurrentLevel(1);
 	
+
+	//Prepare all levels first:
+
+	firstlevel.SetLevelNumber(1);
+	firstlevel.FillLevel();
+	firstlevel.GenerateRandomPitFall();
+	firstlevel.GenerateRandomStartLocation();
+	firstlevel.GenerateRandomRandomStairs();
+	
+
+	secondLevel.SetLevelNumber(2);
+	secondLevel.FillLevel();
+	secondLevel.GenerateRandomPitFall();
+	secondLevel.GenerateRandomStartLocation();
+	secondLevel.GenerateRandomRandomStairs();
+
+	thirdLevel.SetLevelNumber(3);
+	thirdLevel.FillLevel();
+	thirdLevel.GenerateRandomPitFall();
+	thirdLevel.GenerateRandomStartLocation();
+	thirdLevel.GenerateRandomRandomStairs();
+
+	switch (selectedLevel)
+	{
+	case 1:
+		firstlevel.PrintLevelNumber();
+		firstlevel.PrintLevelDescription();
+		firstlevel.PrintLevel();
+		firstlevel.PrintLegend();
+		firstlevel.PrintStartPosition();
+
+		break;
+
+
+	case 2:
+
+		secondLevel.PrintLevelNumber();
+		secondLevel.PrintLevelDescription();
+		secondLevel.PrintLevel();
+		secondLevel.PrintLegend();
+		secondLevel.PrintStartPosition();
+
+		break;
+
+	case 3:
+
+
+		thirdLevel.PrintLevelNumber();
+		thirdLevel.PrintLevelDescription();
+		thirdLevel.PrintLevel();
+		thirdLevel.PrintLegend();
+		thirdLevel.PrintStartPosition();
+
+		break;
+	}
+
+
+
+
+	CheckInput::Instance().CheckingInput(firstlevel);
+	Character::Instance().setstats();
 	while (gameloop){
-		CheckInput keyboard = CheckInput(firstLevel);
-		if (keyboard.gameloop == false){
+
+		switch (selectedLevel)
+		{
+		case 1: {
+			CheckInput::Instance().CheckingInput(firstlevel);
+			break;
+		}
+		case 2:
+		{
+			CheckInput::Instance().CheckingInput(secondLevel);
+			break;
+		}
+		case 3: {
+			CheckInput::Instance().CheckingInput(thirdLevel);
+			break;
+		}
+		}
+
+		if (CheckInput::Instance().gameloop == false){
 			return 0;
 		}
+
 		if (!Character::Instance().isAlive()){
 			system("CLS");
 			break;

@@ -4,10 +4,12 @@
 
 
 
+//Randomizer::Instance().generateRandomNumber(7) use it like this
 
 Randomizer::~Randomizer()
 {
 }
+
 
 
 int Randomizer::generateRandomRow(int rowMaximumValue)

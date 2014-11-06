@@ -4,6 +4,7 @@
 
 Combat::Combat()
 {
+
 }
 
 

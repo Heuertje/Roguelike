@@ -6,10 +6,8 @@
 //TODO: Requirement: 2000 Random chambers
 Chamber::Chamber()
 {
-	
+
 }
-
-
 
 Chamber::~Chamber()
 {
@@ -32,21 +30,40 @@ void Chamber::SetChamberType(int type)
 	{
 		case 0:	
 			chamberType = "Dungeon";	
-			chamberSymbol = 177;
+		//	chamberSymbol = 177;
+			chamberSymbol = ' ';
+			//  block symbol Dungeon
 			break;
 		case 1:	
-			chamberType = "Hallway";
-			chamberSymbol = 197;
+			chamberType = "Vertical Hallway";
+		//	chamberSymbol = 197;
+			chamberSymbol = '|';
+			// cross symbol Hallway
 			break;
 		case 2:
 			chamberType = "Pitfall";
 			chamberSymbol = ' ';
+			// dark is pitfall
 			break;
 		case 3:
-			chamberType = "Stairs";
-	     	chamberSymbol = 92;
+			chamberType = "Stairs Down";
+	    //	chamberSymbol = 92;
+			chamberSymbol = 'L';
+
+			break;
+			//  \ is stairs
+		case 4:
+			chamberType = "Stairs Up";
+		//	chamberSymbol = 47;
+			chamberSymbol = 'H';
 			break;
 			
+		case 5:
+			chamberType = "Horizontal Hallway";
+			chamberSymbol = '-';
+		//	chamberSymbol = 100;
+			break;
+
 		default:
 			//Nothing as default type
 		break;
@@ -83,8 +100,8 @@ void Chamber::GenerateRandomPickUp()
 	
 
 	//TODO: Generate random pick-up items for Hero
+
 //	item->setItemType(Randomizer::Instance().generateRandomNumber(3));
-//	delete item;
 }
 
 void Chamber::GenerateRandomEnemyInChamber()
@@ -94,6 +111,7 @@ void Chamber::GenerateRandomEnemyInChamber()
 	//TODO: Do I have to make a new object of a enemy?? IMPORTANT!
 	enemy->setEnemyType(Randomizer::Instance().generateRandomNumber(7));
 
+	//move to destructor
 	delete enemy;
 }
 
@@ -117,6 +135,7 @@ void Chamber::GenerateRandomDescription()
 	//Memory leak line below
 	description = Description::GenerateDescription();
 } 
+
 
 void Chamber::AssignDungeonAsHeroStartPosition()
 {

@@ -2,6 +2,7 @@
 class Randomizer
 {
 public:
+
 	static Randomizer& Instance()
 	{
 		static Randomizer mInstance;
@@ -14,6 +15,10 @@ public:
 	int generateRandomRow(int rowMaximumValue);
 	int generateRandomCollumn(int collumnMaximumValue);
 	int generateRandomNumber(int maximumNumber);
+
+
+
+
 private:
 	Randomizer(){}
 	Randomizer(Randomizer const&);

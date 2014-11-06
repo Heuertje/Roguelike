@@ -8,6 +8,10 @@ class Enemy : Description
 {
 public:
 
+	int Health;
+	int Power;
+	int AttackPoints;
+
 //	std::string enemyType;
 	bool isBoss;
 	int enemyMaxHealth;
