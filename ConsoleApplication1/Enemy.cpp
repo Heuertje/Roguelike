@@ -6,9 +6,11 @@
 #include "Randomizer.h"
 Enemy::Enemy()
 {
+	dead = false;
 	isBoss = false;
 	Enemy::setEnemyStats();
 	descriptioninfo = Enemy::setEnemyType(Randomizer::Instance().generateRandomNumber(6));
+
 }
 
 
@@ -16,6 +18,27 @@ Enemy::Enemy()
 Enemy::~Enemy()
 {
 
+}
+
+bool Enemy::isdead(){
+	if (enemyHealth < 1){
+		dead = true;
+		Character::Instance().increasexp(enemyMaxHealth);
+	}
+	return dead;
+}
+void Enemy::attackme(){
+	int attdefdiff = Character::Instance().getDef() - enemyAttack;
+	int damage = Randomizer::Instance().generateRandomNumber(Character::Instance().getAttack() + Character::Instance().getStrength()) + Character::Instance().getAttack();
+	damage = damage * (enemyDefense / 10);
+	Character::Instance().decreasehealth(damage);
+}
+void Enemy::meattack(){
+	int attdefdiff = enemyDefense - Character::Instance().getAttack();
+	int damage = Randomizer::Instance().generateRandomNumber(enemyAttack + enemyStrength) + enemyAttack;
+	damage = damage * 2 - (Character::Instance().getDef() / 10);
+	Enemy::decreaseEnemyHP(damage);
+	cout << "You just hit " << Enemy::getEnemyName() << " and you did " << damage << " damage." << endl;
 }
 
 void Enemy::setEnemyStats(){
@@ -37,11 +60,18 @@ void Enemy::setEnemyLevel(){
 }
 
 void Enemy::EnemyData(){
-	cout << descriptioninfo << endl;
+	cout << endl <<"You are Facing a " << descriptioninfo << endl
+		<< "This badass got the following stats:" << endl
+		<< "Level " << enemyLevel << ", Health" << enemyHealth << endl;
 }
 
+string Enemy::getEnemyName(){
+	return descriptioninfo;
+}
 int Enemy::decreaseEnemyHP(int x){
 	enemyHealth -= x;
+	cout << "The enemy now has " << enemyHealth << " left." << endl;
+	Enemy::isdead();
 	return enemyHealth;
 }
 int Enemy::getEnemyHP(){

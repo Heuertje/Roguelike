@@ -57,14 +57,15 @@ int Character::getStrength(){
 
 
 
+
 void Character::setstats(){
 	level = 1;
 	health = 30;
 	maxhealth = 30;
 	xp = 0;
-	attack = 3;
-	strength = 3;
-	defense = 3;
+	attack = 5;
+	strength = 5;
+	defense = 5;
 	awareness = 0;
 }
 

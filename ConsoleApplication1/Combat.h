@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Enemy.h"
 using namespace std;
 
 class Combat

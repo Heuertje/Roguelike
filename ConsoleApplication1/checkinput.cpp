@@ -7,23 +7,21 @@
 #include <string>
 #include <sstream>
 #include "Randomizer.h"
-
+#include "Combat.h"
 
 CheckInput::~CheckInput(){
-	cout << "dfsg" << endl;
+	delete rat;
+
 }
 
 void CheckInput::CheckingInput(Level& lvl)
 {
+	level = lvl; 
 	input = "";
 	gameloop = true;
 	// Left = 0, Right = 1, Down = 2, Up = 3
 	string input; 
 	
-
-
-
-
 	arrowcontrols = false;
 
 	// Left = 0, Right = 1, Down = 2, Up = 3
@@ -110,7 +108,7 @@ void CheckInput::CheckingInput(Level& lvl)
 		}
 		else if (input == "showmap" || input == "level"){
 			lvl.PrintLevel();
-			lvl.PrintLegend();
+			
 			lvl.PrintStartPosition();
 		}
 		else if (input == "hpup"){
@@ -121,12 +119,23 @@ void CheckInput::CheckingInput(Level& lvl)
 			Character::Instance().decreasehealth(10);
 
 		}
-		else if (input == "enemytest"){
-			Enemy* rat = new Enemy();
+		else if (input == "enemy"){
+			rat = new Enemy();
 			rat->setEnemyLevel();
 			cout << "Enemy HP: " << rat->getEnemyHP() << endl;
 			rat->EnemyData();
-			delete rat;
+			
+		}
+		else if (input == "attack"){
+			if (rat->isdead()){
+				cout << "You just killed an npc" << endl;
+				delete rat;
+			}
+			else if (!rat->isdead())
+			{
+				rat->meattack();
+				rat->attackme();
+			}
 		}
 		else{
 			cout << "Sorry, I didn't catch that command. Please try again.";
@@ -134,130 +143,139 @@ void CheckInput::CheckingInput(Level& lvl)
 	}
 
 }
+
 // Left = 0, Right = 1, Down = 2, Up = 3
 void CheckInput::Walk(int direction)
 {
-	system("CLS");
 	switch (direction)
 	{
+	case 0: //LEFT
 
-		case 0: //LEFT	
-			lvl.PrintLevelNumber();
-			
-			//indicate current location
-			if (lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
-			{
-				lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
-			}
-			else
-			{
-				
-				lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
-			}
 
-			
-			startPosition.y--;
-			lvl.CheckWhetherHeroReachedStairs();
-			lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
-			
-			//currentPosition is newly manipulated startPosition
-			lvl.currentPosition = startPosition;
-			
-			// Limit Player from walking away from map
-			if (startPosition.y <= 1)
-			{
-				startPosition.y = 1;
-			}
-			cout << "CASE 0: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
-			lvl.PrintLevel();
-			lvl.PrintLegend();
-			lvl.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
-			break;
 
-		case 1:  //RIGHT
-				
-				lvl.PrintLevelNumber();
-				
-				if (lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
-				{
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
-				}
-				else
-				{
-					
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
-				}
+		system("CLS");
+		level.PrintLevelNumber();
 
-				startPosition.y++;
-				lvl.CheckWhetherHeroReachedStairs();
-				
-				lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
-				lvl.currentPosition = startPosition;
-				if (startPosition.y >= 19-1)
-				{
-					startPosition.y = 19-1;
-				}
-				cout << "CASE 1: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
-				lvl.PrintLevel();
-				lvl.PrintLegend();
-		//	}
-				lvl.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+		//indicate current location
+		if (level.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
+		{
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
+		}
+		else
+		{
 
-			break;
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
+		}
 
-		case 2: //DOWN
-				lvl.PrintLevelNumber();
-				
-				if (lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
-				{
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
-				}
-				else
-				{
-				
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
-				}
 
-				startPosition.x++;
-				lvl.CheckWhetherHeroReachedStairs();
-				lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
-				lvl.currentPosition = startPosition;
-				if (startPosition.x >= 19-1)
-				{
-					startPosition.x = 19-1;
-				}
-				cout << "CASE 2: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
-				lvl.PrintLevel();
-				lvl.PrintLegend();
-				lvl.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
-			break;
+		startPosition.y--;
+		level.CheckWhetherHeroReachedStairs();
+		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
 
-		case 3: //UP
+		//currentPosition is newly manipulated startPosition
+		level.currentPosition = startPosition;
 
-				lvl.PrintLevelNumber();
-				
-				if (lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
-				{
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
-				}
-				else
-				{
-					
-					lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
-				}
-				startPosition.x--;
-				lvl.CheckWhetherHeroReachedStairs();
+		// Limit Player from walking away from map
+		if (startPosition.y <= 1)
+		{
+			startPosition.y = 1;
+		}
+		cout << "CASE 0: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
+		level.PrintLevel();
+		level.PrintLegend();
+		level.PrintStartPosition();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+		break;
 
-				lvl.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
-				lvl.currentPosition = startPosition;
-				if (startPosition.x <= 1)
-				{
-					startPosition.x = 1;
-				}
-				cout << " CASE 3: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
-				lvl.PrintLevel();
-				lvl.PrintLegend();
-				lvl.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+	case 1:  //RIGHT
+
+		system("CLS");
+		level.PrintLevelNumber();
+
+		if (level.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
+		{
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
+		}
+		else
+		{
+
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
+		}
+
+		startPosition.y++;
+		level.CheckWhetherHeroReachedStairs();
+
+		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
+		level.currentPosition = startPosition;
+		if (startPosition.y >= 19 - 1)
+		{
+			startPosition.y = 19 - 1;
+		}
+		cout << "CASE 1: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
+		level.PrintLevel();
+		level.PrintLegend();
+		level.PrintStartPosition();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+
+		break;
+
+	case 2: //DOWN
+		system("CLS");
+		level.PrintLevelNumber();
+
+		if (level.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
+		{
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
+		}
+		else
+		{
+
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
+		}
+
+		startPosition.x++;
+		level.CheckWhetherHeroReachedStairs();
+		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
+		level.currentPosition = startPosition;
+		if (startPosition.x >= 19 - 1)
+		{
+			startPosition.x = 19 - 1;
+		}
+		cout << "CASE 2: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
+		level.PrintLevel();
+		level.PrintLegend();
+		level.PrintStartPosition();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+		break;
+
+	case 3: //UP
+
+		system("CLS");
+		level.PrintLevelNumber();
+
+		if (level.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
+		{
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
+		}
+		else
+		{
+
+			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
+		}
+		startPosition.x--;
+		level.CheckWhetherHeroReachedStairs();
+
+		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'x';
+		level.currentPosition = startPosition;
+		if (startPosition.x <= 1)
+		{
+			startPosition.x = 1;
+		}
+		cout << " CASE 3: Coordinates: " << startPosition.x << "," << startPosition.y << endl;
+		level.PrintLevel();
+		level.PrintLegend();
+		level.PrintStartPosition();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		//	}
 
 		break;
@@ -274,4 +292,3 @@ void CheckInput::SetStartPosition(Position value)
 {
 	startPosition = value;
 }
-

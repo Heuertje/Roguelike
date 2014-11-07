@@ -11,7 +11,7 @@ public:
 	int Health;
 	int Power;
 	int AttackPoints;
-
+	bool dead;
 //	std::string enemyType;
 	bool isBoss;
 	int enemyMaxHealth;
@@ -26,7 +26,12 @@ public:
 	void increaseEnemyLevel();
 	void generateEnemyStats();
 	
-	
+	bool isdead();
+	void attackme();
+	void meattack();
+
+
+	string getEnemyName();
 	int getEnemyHP();
 	int getEnemyLevel();
 	int getEnemyDef();

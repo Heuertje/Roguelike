@@ -19,9 +19,11 @@ class CheckInput
 		string input;
 		int key_code;
 		Position startPosition;
-		Level lvl;
+		Level level;
 		void CheckingInput(Level& lvl);
 		~CheckInput();
+
+		Enemy* rat;
 
 		void CheckInput::Walk(int direction);
 		void SetStartPosition(Position value);
