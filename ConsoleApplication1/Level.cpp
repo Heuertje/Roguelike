@@ -27,7 +27,6 @@ Level::~Level()
 
 void Level::FillLevel()
 {
-
 	for (int n = 0; n < row; n++)
 	{
 		for (int m = 0; m < collumn; m++)
@@ -40,7 +39,6 @@ void Level::FillLevel()
 			
 			//levelMap[n][m] = '.';
 			delete newChamber;
-
 			//dungeonHallways[n][m] = ' ';
 		}
 	}
@@ -294,3 +292,7 @@ void Level::SetHeroCurrentPosition(Position currentPosition){
 
 }
 
+void Level::GenerateTwoRandomBosses()
+{
+	
+}

@@ -44,6 +44,6 @@ public:
 	 void PrintLevelDescription();
 	 int SetCurrentLevel(int setLevel);
 	 void SetHeroCurrentPosition(Position currentPosition);
-	
+	 void GenerateTwoRandomBosses();
 };
 

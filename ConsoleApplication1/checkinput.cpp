@@ -189,6 +189,7 @@ void CheckInput::Walk(int direction)
 		level.PrintLegend();
 		level.PrintStartPosition();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 		break;
 
 	case 1:  //RIGHT
@@ -220,7 +221,7 @@ void CheckInput::Walk(int direction)
 		level.PrintLegend();
 		level.PrintStartPosition();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
-
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 		break;
 
 	case 2: //DOWN
@@ -250,6 +251,7 @@ void CheckInput::Walk(int direction)
 		level.PrintLegend();
 		level.PrintStartPosition();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 		break;
 
 	case 3: //UP
@@ -281,7 +283,7 @@ void CheckInput::Walk(int direction)
 		level.PrintStartPosition();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		//	}
-
+		level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 		break;
 
 	default:

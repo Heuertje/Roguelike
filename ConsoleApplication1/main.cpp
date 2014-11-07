@@ -16,10 +16,7 @@
 #include "LevelManager.h"
 using namespace std;
 
-
-
 bool gameloop = true;
-
 bool isLevelOneCreated = false;
 bool isLevelTwoCreated = false;
 bool isLevelThreeCreated = false;
@@ -109,51 +106,27 @@ int main()
 
 	std::srand((unsigned int)time(NULL));
 
-	
-	
-
-	//int selectedLevel = firstlevel.SetCurrentLevel(1);
-
 	int selectedLevel = 1;
 
-	//Prepare all levels first:
 
+	cout << "WELCOME TO THE ROGUELIKE: 'MONSTER MAZE OF DIZZINESS' " << endl << endl 
+		<< "Your great text-based adventure starts here! " << endl
+		<< "You will encounter many hardships along your journey" << endl
+		<< "Defeat the enemies and all two bosses in all three levels \n and honor glory shall be granted to you" << endl
+		<< " The developing lords wish you lots of luck! " << endl
+		<< " May the odds be with you!" << endl << endl;
 
-	switch (selectedLevel)
-	{
-	case 1:
-
-
-
-
-
-		break;
-
-	case 2:
-
-
-
-		break;
-
-	case 3:
-
-		break;
-	}
-
-
-
+	cout << " Press enter to continue! " << endl;
+	
+	cin.get();
+	system("CLS");
 
 	while (gameloop){
-
-
-
-
 
 
 		switch (selectedLevel)
 		{
 		case 1: {
-
 					if (isLevelOneCreated == false)
 					{
 						isLevelOneCreated = createLevelOne();
