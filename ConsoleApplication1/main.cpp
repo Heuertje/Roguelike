@@ -104,23 +104,23 @@ int main()
 
 
 
-	CheckInput::Instance().CheckingInput(firstlevel);
+	CheckInput::Instance().ChecksInput(firstlevel);
 	Character::Instance().setstats();
 	while (gameloop){
 
 		switch (selectedLevel)
 		{
 		case 1: {
-			CheckInput::Instance().CheckingInput(firstlevel);
+			CheckInput::Instance().CheckingInput();
 			break;
 		}
 		case 2:
 		{
-			CheckInput::Instance().CheckingInput(secondLevel);
+			CheckInput::Instance().CheckingInput();
 			break;
 		}
 		case 3: {
-			CheckInput::Instance().CheckingInput(thirdLevel);
+			CheckInput::Instance().CheckingInput();
 			break;
 		}
 		}

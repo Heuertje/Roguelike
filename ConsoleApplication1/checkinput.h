@@ -20,7 +20,9 @@ class CheckInput
 		int key_code;
 		Position startPosition;
 		Level level;
-		void CheckingInput(Level& lvl);
+		Level lvl;
+		void ChecksInput(Level& lvl);
+		void CheckingInput();
 		~CheckInput();
 
 		Enemy* rat;

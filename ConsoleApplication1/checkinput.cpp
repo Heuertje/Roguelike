@@ -14,9 +14,13 @@ CheckInput::~CheckInput(){
 
 }
 
-void CheckInput::CheckingInput(Level& lvl)
+void CheckInput::ChecksInput(Level& lvl){
+	level = lvl;
+	lvl = lvl;
+}
+void CheckInput::CheckingInput()
 {
-	level = lvl; 
+	//while gameloop
 	input = "";
 	gameloop = true;
 	// Left = 0, Right = 1, Down = 2, Up = 3
