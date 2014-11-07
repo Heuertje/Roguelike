@@ -31,13 +31,13 @@ void Chamber::SetChamberType(int type)
 		case 0:	
 			chamberType = "Dungeon";	
 		//	chamberSymbol = 177;
-			chamberSymbol = ' ';
+			chamberSymbol = 'N';
 			//  block symbol Dungeon
 			break;
 		case 1:	
 			chamberType = "Vertical Hallway";
-		//	chamberSymbol = 197;
-			chamberSymbol = '|';
+			chamberSymbol = 197;
+		//	chamberSymbol = '|';
 			// cross symbol Hallway
 			break;
 		case 2:

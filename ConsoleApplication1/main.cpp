@@ -20,6 +20,78 @@ using namespace std;
 
 bool gameloop = true;
 
+bool isLevelOneCreated = false;
+bool isLevelTwoCreated = false;
+bool isLevelThreeCreated = false;
+
+Level firstlevel;
+Level secondLevel;
+Level thirdLevel;
+bool createLevelOne()
+{
+	
+	firstlevel.SetCurrentLevel(1);
+	firstlevel.SetLevelNumber(1);
+	firstlevel.FillLevel();
+	firstlevel.GenerateRandomPitFall();
+	firstlevel.GenerateRandomStartLocation();
+	firstlevel.GenerateRandomRandomStairs();
+
+	firstlevel.PrintLevelNumber();
+	firstlevel.PrintLevelDescription();
+	firstlevel.PrintLevel();
+	firstlevel.PrintLegend();
+	firstlevel.PrintStartPosition();
+
+	CheckInput::Instance().ChecksInput(firstlevel);
+	Character::Instance().setstats();
+	return true;
+}
+
+bool createLevelTwo()
+{
+	
+	secondLevel.SetCurrentLevel(2);
+	secondLevel.SetLevelNumber(2);
+	secondLevel.FillLevel();
+	secondLevel.GenerateRandomPitFall();
+	secondLevel.GenerateRandomStartLocation();
+	secondLevel.GenerateRandomRandomStairs();
+
+	secondLevel.PrintLevelNumber();
+	secondLevel.PrintLevelDescription();
+	secondLevel.PrintLevel();
+	secondLevel.PrintLegend();
+	secondLevel.PrintStartPosition();
+
+
+	CheckInput::Instance().ChecksInput(secondLevel);
+	Character::Instance().setstats();
+	return true;
+}
+
+bool createLevelThree()
+{
+
+	
+	thirdLevel.SetCurrentLevel(3);
+	thirdLevel.SetLevelNumber(3);
+	thirdLevel.FillLevel();
+	thirdLevel.GenerateRandomPitFall();
+	thirdLevel.GenerateRandomStartLocation();
+	thirdLevel.GenerateRandomRandomStairs();
+
+	thirdLevel.PrintLevelNumber();
+	thirdLevel.PrintLevelDescription();
+	thirdLevel.PrintLevel();
+	thirdLevel.PrintLegend();
+	thirdLevel.PrintStartPosition();
+
+	CheckInput::Instance().ChecksInput(thirdLevel);
+	Character::Instance().setstats();
+	return true;
+}
+
 
 
 int main()
@@ -35,68 +107,35 @@ int main()
 
 	//vector<Level> mazeDungeons;
 
-
 	std::srand((unsigned int)time(NULL));
 
-
-	Level firstlevel;
-	Level secondLevel;
-	Level thirdLevel;
-
-	int selectedLevel = firstlevel.SetCurrentLevel(1);
 	
+	
+
+	//int selectedLevel = firstlevel.SetCurrentLevel(1);
+
+	int selectedLevel = 1;
 
 	//Prepare all levels first:
 
-	firstlevel.SetLevelNumber(1);
-	firstlevel.FillLevel();
-	firstlevel.GenerateRandomPitFall();
-	firstlevel.GenerateRandomStartLocation();
-	firstlevel.GenerateRandomRandomStairs();
-	
-
-	secondLevel.SetLevelNumber(2);
-	secondLevel.FillLevel();
-	secondLevel.GenerateRandomPitFall();
-	secondLevel.GenerateRandomStartLocation();
-	secondLevel.GenerateRandomRandomStairs();
-
-	thirdLevel.SetLevelNumber(3);
-	thirdLevel.FillLevel();
-	thirdLevel.GenerateRandomPitFall();
-	thirdLevel.GenerateRandomStartLocation();
-	thirdLevel.GenerateRandomRandomStairs();
 
 	switch (selectedLevel)
 	{
 	case 1:
-		firstlevel.PrintLevelNumber();
-		firstlevel.PrintLevelDescription();
-		firstlevel.PrintLevel();
-		firstlevel.PrintLegend();
-		firstlevel.PrintStartPosition();
+
+
+
+
 
 		break;
 
-
 	case 2:
 
-		secondLevel.PrintLevelNumber();
-		secondLevel.PrintLevelDescription();
-		secondLevel.PrintLevel();
-		secondLevel.PrintLegend();
-		secondLevel.PrintStartPosition();
+
 
 		break;
 
 	case 3:
-
-
-		thirdLevel.PrintLevelNumber();
-		thirdLevel.PrintLevelDescription();
-		thirdLevel.PrintLevel();
-		thirdLevel.PrintLegend();
-		thirdLevel.PrintStartPosition();
 
 		break;
 	}
@@ -104,25 +143,48 @@ int main()
 
 
 
-	CheckInput::Instance().ChecksInput(firstlevel);
-	Character::Instance().setstats();
 	while (gameloop){
+
+
+
+
+
 
 		switch (selectedLevel)
 		{
 		case 1: {
+
+					if (isLevelOneCreated == false)
+					{
+						isLevelOneCreated = createLevelOne();
+					}
+					selectedLevel = firstlevel.CheckWhetherHeroReachedStairs();
 			CheckInput::Instance().CheckingInput();
+		
 			break;
 		}
 		case 2:
 		{
+				  if (isLevelTwoCreated == false)
+				  {
+					  isLevelTwoCreated = createLevelTwo();
+				  }
+				  selectedLevel = secondLevel.CheckWhetherHeroReachedStairs();
 			CheckInput::Instance().CheckingInput();
+		
 			break;
 		}
 		case 3: {
+					if (isLevelThreeCreated == false)
+					{
+						isLevelThreeCreated = createLevelThree();
+					}
+
+			selectedLevel = thirdLevel.CheckWhetherHeroReachedStairs();
 			CheckInput::Instance().CheckingInput();
 			break;
 		}
+
 		}
 
 		if (CheckInput::Instance().gameloop == false){
