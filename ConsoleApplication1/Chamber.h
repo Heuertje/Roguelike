@@ -34,5 +34,6 @@ public:
 	void GenerateRandomDescription();
 	void AssignDungeonAsHeroStartPosition();
 	void PrintChamberDescription();
+	void PrintChamberItemDescription();
 };
 

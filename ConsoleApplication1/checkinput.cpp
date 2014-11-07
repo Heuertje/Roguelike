@@ -162,53 +162,50 @@ void CheckInput::CheckingInput()
 
 }
 
+//		
+
+
+
+
 // Left = 0, Right = 1, Down = 2, Up = 3
 void CheckInput::Walk(int direction)
 {
 	system("CLS");
 	level.PrintLevelNumber();
-
 	//indicate current location
-
 	if (level.levelMap[startPosition.x][startPosition.y].chamberSymbol == 'S')
 	{
 		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'S';
 	}
 	else
 	{
-
 		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
 		switch (direction)
 		{
-
-
 		case 0: //LEFT
 			startPosition.y--;
 			level.CheckWhetherHeroReachedStairs();
 			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'X';
-
 			//currentPosition is newly manipulated startPosition
 			level.currentPosition = startPosition;
-
 			// Limit Player from walking away from map
 			if (startPosition.y <= 1)
 			{
 				startPosition.y = 1;
 			}
+			//			level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 			break;
-
-		case 1:  //RIGHT
+		case 1: //RIGHT
 			startPosition.y++;
 			level.CheckWhetherHeroReachedStairs();
-
 			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'X';
 			level.currentPosition = startPosition;
 			if (startPosition.y >= 19 - 1)
 			{
 				startPosition.y = 19 - 1;
 			}
+			//			level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 			break;
-
 		case 2: //DOWN
 			startPosition.x++;
 			level.CheckWhetherHeroReachedStairs();
@@ -218,33 +215,32 @@ void CheckInput::Walk(int direction)
 			{
 				startPosition.x = 19 - 1;
 			}
+			//			level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 			break;
-
 		case 3: //UP
 			startPosition.x--;
 			level.CheckWhetherHeroReachedStairs();
-
 			level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'X';
 			level.currentPosition = startPosition;
 			if (startPosition.x <= 1)
 			{
 				startPosition.x = 1;
 			}
+			//			level.levelMap[startPosition.x][startPosition.y].PrintChamberItemDescription();
 			break;
-
 		default:
 			//Nothing implemented at the moment
 			break;
 		}
+	}
 		cout << " You are now at location " << startPosition.x << "," << startPosition.y << endl;
-
 		level.PrintLevel();
 		level.PrintLegend();
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		Enemy::Instance().newEnemy();
-
-	}
+	
 }
+
 
 void CheckInput::SetStartPosition(Position value)
 {

@@ -1,19 +1,19 @@
 #include "stdafx.h"
 #include "Chamber.h"
-
+#include <ctime>
 #include "Randomizer.h"
 
 //TODO: Requirement: 2000 Random chambers
 Chamber::Chamber()
 {
-
+//	item = new Item();
 }
 
 Chamber::~Chamber()
 {
-
+	delete item;
 	// DisposeObject();
-//	delete item;
+	
 //	delete enemy;
 }
 
@@ -36,8 +36,8 @@ void Chamber::SetChamberType(int type)
 			break;
 		case 1:	
 			chamberType = "Vertical Hallway";
-		//	chamberSymbol = 197;
-			chamberSymbol = '|';
+			chamberSymbol = 197;
+		//	chamberSymbol = '|';
 			// cross symbol Hallway
 			break;
 		case 2:
@@ -84,6 +84,7 @@ void Chamber::PutStuffRandomlyInChamber()
 {
 	//TODO: Implement random chairs, tables, candles, in a chamber
 	GenerateRandomPickUp();
+
 	GenerateRandomChamberDecorativeItems();
 	GenerateRandomDescription();
 }
@@ -93,14 +94,11 @@ void Chamber::GenerateRandomPickUp()
 	//TODO: Generate random pick-up items for Hero
 	//Memory leak line below
 
-//	int type = Randomizer::Instance().generateRandomNumber(3);
 
-//	Item::setItemType(type);
-	
+//	item->setItemType(Randomizer::Instance().generateRandomNumber(50));
 
+	//delete item;
 	//TODO: Generate random pick-up items for Hero
-
-//	item->setItemType(Randomizer::Instance().generateRandomNumber(3));
 }
 
 void Chamber::GenerateRandomEnemyInChamber()
@@ -132,7 +130,6 @@ void Chamber::GenerateRandomDescription()
 	description = Description::GenerateDescription();
 } 
 
-
 void Chamber::AssignDungeonAsHeroStartPosition()
 {
 	dungeonHeroStartState = true;
@@ -146,4 +143,9 @@ void Chamber::PrintChamberDescription()
 //	cout << description->descriptioninfo << endl;
 	cout << description << endl;
 
+}
+
+void Chamber::PrintChamberItemDescription()
+{
+	cout << item->itemtype << endl;
 }

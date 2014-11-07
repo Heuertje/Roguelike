@@ -27,7 +27,6 @@ Level::~Level()
 
 void Level::FillLevel()
 {
-
 	for (int n = 0; n < row; n++)
 	{
 		for (int m = 0; m < collumn; m++)
@@ -40,7 +39,6 @@ void Level::FillLevel()
 			
 			//levelMap[n][m] = '.';
 			delete newChamber;
-
 			//dungeonHallways[n][m] = ' ';
 		}
 	}
@@ -71,7 +69,7 @@ void Level::PrintLegend()
 	cout << "| : Gangen" << endl;
 	cout << "S : Start Locatie" << endl;
 	cout << "E : Eind vijand" << endl;
-	cout << "N : Normale Ruimte" << endl;
+	cout << "  : Normale Ruimte" << endl;
 	cout << "L : Trap Omlaag" << endl;
 	cout << "H : Trap Omhoog" << endl;
 	cout << ". : Niet bezocht" << endl;
@@ -92,7 +90,8 @@ Position Level::GenerateRandomStartLocation()
 	levelMap[x][y] = *newStartChamber;
 	delete newStartChamber;
 	
-	startPosition = Position(x, y);
+	startPosition.x = x;
+	startPosition.y = y;
 
 	return startPosition;
 }
@@ -213,7 +212,7 @@ void Level::PrintStartPosition()
 	cout << "Start Position: " << startPosition.x << "," << startPosition.y << endl;
 
 	//TODO: ALSO print Start position chamber description
- levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
+ //levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 }
 
 void Level::SetLevelNumber(int lvl)
@@ -226,7 +225,7 @@ void Level::PrintLevelNumber()
 	cout << "Level: " << levelNumber << endl;
 }
 
-void Level::CheckWhetherHeroReachedStairs()
+int Level::CheckWhetherHeroReachedStairs()
 {
 	// If Hero position has reached the (down) stairs:
 	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 'L')
@@ -235,6 +234,7 @@ void Level::CheckWhetherHeroReachedStairs()
 		// Level++
 		currentLevel++;
 		LevelManager::Instance().SetCurrentLevel(currentLevel);
+		return currentLevel;
 		// Print Current Level
 		// Print other descriptions
 
@@ -248,32 +248,36 @@ void Level::CheckWhetherHeroReachedStairs()
 		// Print other descriptions
 		currentLevel--;
 		LevelManager::Instance().SetCurrentLevel(currentLevel);
+		return currentLevel;
 	}
 
 
 	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 92)
 	{
 		cout << "Stairs Down Reached!" << endl;
+		currentLevel++;
 		// Level++
 		// Print Current Level
 		// Print other descriptions
+		return currentLevel;
 	}
 
 	if (levelMap[startPosition.x][startPosition.y].chamberSymbol == 47)
 	{
 		cout << "Stairs UP Reached!" << endl;
+		currentLevel--;
 		// Level--
 		// Print Current Level
 		// Print other descriptions
+		return currentLevel;
 	}
 
-
-
+	return currentLevel;
 }
 
 void Level::PrintLevelDescription()
 {
-	cout << "Welcome to the Level 1: Ruins of the Lost" << endl;
+	cout << "Welcome to the Level: " << levelNumber << endl;
 }
 
 int Level::SetCurrentLevel(int setLevel){
@@ -286,4 +290,9 @@ int Level::SetCurrentLevel(int setLevel){
 void Level::SetHeroCurrentPosition(Position currentPosition){
 
 
+}
+
+void Level::GenerateTwoRandomBosses()
+{
+	
 }

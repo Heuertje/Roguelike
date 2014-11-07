@@ -40,10 +40,10 @@ public:
 	 void PrintStartPosition();
 	 void SetLevelNumber(int lvl);
 	 void PrintLevelNumber();
-	 void CheckWhetherHeroReachedStairs();
+	 int CheckWhetherHeroReachedStairs();
 	 void PrintLevelDescription();
 	 int SetCurrentLevel(int setLevel);
 	 void SetHeroCurrentPosition(Position currentPosition);
-	
+	 void GenerateTwoRandomBosses();
 };
 
