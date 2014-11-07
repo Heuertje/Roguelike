@@ -180,6 +180,7 @@ void CheckInput::Walk(int direction)
 	else
 	{
 		level.levelMap[startPosition.x][startPosition.y].chamberSymbol = 'o';
+	}
 		switch (direction)
 		{
 		case 0: //LEFT
@@ -232,10 +233,12 @@ void CheckInput::Walk(int direction)
 			//Nothing implemented at the moment
 			break;
 		}
-	}
+	
 		cout << " You are now at location " << startPosition.x << "," << startPosition.y << endl;
 		level.PrintLevel();
 		level.PrintLegend();
+		level.PrintStartPosition();
+
 		level.levelMap[startPosition.x][startPosition.y].PrintChamberDescription();
 		Enemy::Instance().newEnemy();
 	
