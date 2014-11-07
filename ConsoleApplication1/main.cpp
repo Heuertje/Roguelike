@@ -1,5 +1,5 @@
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
+//@Authors: Andrew Servania & Bas Heuer
 
 //Memory leak detection
 #define _CRTDBG_MAP_ALLOC
