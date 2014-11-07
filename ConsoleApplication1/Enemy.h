@@ -7,7 +7,10 @@
 class Enemy : Description
 {
 public:
-
+	static Enemy& Instance(){
+		static Enemy mInstance;
+		return mInstance;
+	}
 	int Health;
 	int Power;
 	int AttackPoints;
@@ -20,15 +23,18 @@ public:
 	int enemyDefense;
 	int enemyLevel;
 	int enemyStrength;
+	bool gotxp;
 	string descriptioninfo;
+	void newEnemy();
+	void resetEnemy();
 	void setEnemyStats();
 	void setEnemyLevel();
 	void increaseEnemyLevel();
 	void generateEnemyStats();
 	
 	bool isdead();
-	void attackme();
-	void meattack();
+	void attackMe();
+	void Iattack();
 
 
 	string getEnemyName();
@@ -40,9 +46,14 @@ public:
 	void EnemyData();
 	
 	int decreaseEnemyHP(int x);
-	Enemy();
 	~Enemy();
 	string setEnemyType(int type);
 	void CreateEnemyAmount();
+
+	
+private:
+	Enemy(){}
+	Enemy(Enemy const&);
+	void operator=(Enemy const&);
 };
 

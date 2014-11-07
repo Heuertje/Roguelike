@@ -84,7 +84,6 @@ void Chamber::PutStuffRandomlyInChamber()
 {
 	//TODO: Implement random chairs, tables, candles, in a chamber
 	GenerateRandomPickUp();
-	GenerateRandomEnemyInChamber();
 	GenerateRandomChamberDecorativeItems();
 	GenerateRandomDescription();
 }
@@ -107,12 +106,9 @@ void Chamber::GenerateRandomPickUp()
 void Chamber::GenerateRandomEnemyInChamber()
 {
 	//Memory leak line below
-	enemy = new Enemy();
 	//TODO: Do I have to make a new object of a enemy?? IMPORTANT!
-	enemy->setEnemyType(Randomizer::Instance().generateRandomNumber(7));
 
 	//move to destructor
-	delete enemy;
 }
 
 void Chamber::GenerateRandomChamberDecorativeItems()

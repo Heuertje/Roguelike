@@ -25,8 +25,6 @@ class CheckInput
 		void CheckingInput();
 		~CheckInput();
 
-		Enemy* rat;
-
 		void CheckInput::Walk(int direction);
 		void SetStartPosition(Position value);
 private:

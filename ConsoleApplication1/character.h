@@ -36,7 +36,7 @@ public:
 	int getlevel();
 	int getHealth();
 	int getStrength();
-
+	int getXp();
 	void setstats();
 
 	int increasexp(int x);

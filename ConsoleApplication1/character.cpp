@@ -55,7 +55,10 @@ int Character::getStrength(){
 	return strength;
 }
 
-
+int Character::getXp(){
+	cout << endl << "You've currently got " << xp << " Experience Points." << endl;
+	return xp;
+}
 
 
 void Character::setstats(){
@@ -71,6 +74,7 @@ void Character::setstats(){
 
 int Character::increasexp(int x){
 	xp += x;
+	cout << "You've now got: " << xp <<" XP" << endl;
 	Character::Instance().checkxp();
 	return xp;
 }
@@ -119,13 +123,17 @@ int Character::increaselevel(){
 		return maxhealth;
 	};
 	int Character::increasehealth(int x){
-		health += x;
-		cout << "You just gained " << x << "HP" << endl << "You've now got " << health << "HP" << endl;
+		if (x > 0){
+			health += x;
+			cout << "You just gained " << x << "HP" << endl << "You've now got " << health << "HP" << endl;
+		}
 		return health;
 	}
 	int Character::decreasehealth(int x){
-		health -= x;
-		cout << "You just lost "<< x << "HP" << endl << "You've now got " << health << "HP" << endl;
+		if (x > 0){
+			health -= x;
+			cout << "You just lost " << x << "HP" << endl << "You've now got " << health << "HP" << endl;
+		}
 		return health;
 	}
 
